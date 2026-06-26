@@ -148,6 +148,17 @@ a:hover { text-decoration: underline; }
 
 .btn-primary:hover { filter: brightness(1.08); text-decoration: none; }
 
+.btn-inline {
+  margin-top: 0.5rem;
+  width: auto;
+  display: inline-flex;
+}
+
+.card code {
+  font-size: 0.8em;
+  color: var(--accent-2);
+}
+
 .btn-secondary {
   background: transparent;
   color: var(--muted);
