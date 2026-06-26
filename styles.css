@@ -78,10 +78,21 @@ a:hover { text-decoration: underline; }
 }
 
 .hero p {
-  margin: 0 auto 2rem;
+  margin: 0 auto 1rem;
   max-width: 36rem;
   color: var(--muted);
   font-size: 1.05rem;
+}
+
+.hero-version {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.hero-version span {
+  color: var(--accent-2);
+  font-weight: 600;
 }
 
 .download-grid {
@@ -103,6 +114,17 @@ a:hover { text-decoration: underline; }
 
 .card h3 { margin: 0 0 0.35rem; font-size: 1rem; }
 .card p { margin: 0 0 1rem; font-size: 0.85rem; color: var(--muted); }
+
+.card-featured {
+  border-color: rgba(167, 139, 250, 0.35);
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.08), var(--surface));
+}
+
+.features-note {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
 
 .btn {
   display: inline-flex;

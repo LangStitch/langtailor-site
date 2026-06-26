@@ -25,13 +25,19 @@
       A full desktop LangGraph IDE — visual canvas, code editor, guardrails, and
       production Python export. Built on open-source VS Code / Code-OSS for Windows and macOS.
     </p>
+    <p class="hero-version">Latest release: <span id="release-version">loading…</span></p>
   </header>
 
   <section class="download-grid" aria-label="Download options">
-    <article class="card">
+    <article class="card card-featured">
       <h3>Windows (64-bit)</h3>
-      <p>Windows 10/11 · x64</p>
-      <span class="btn btn-secondary" aria-disabled="true">Installer coming soon</span>
+      <p>Portable zip · Windows 10/11 · x64 · includes VSCodium + canvas extension</p>
+      <a id="dl-windows" class="btn btn-secondary" aria-disabled="true" href="#">Checking releases…</a>
+    </article>
+    <article class="card">
+      <h3>Canvas extension (.vsix)</h3>
+      <p>Install into VS Code or VSCodium you already have</p>
+      <a id="dl-vsix" class="btn btn-secondary" aria-disabled="true" href="#">Checking releases…</a>
     </article>
     <article class="card">
       <h3>macOS (Apple Silicon)</h3>
@@ -55,12 +61,12 @@
       <li>Git sync &amp; platform deploy</li>
       <li>Works offline on your machine</li>
     </ul>
-    <p style="margin-top:1.5rem;color:var(--muted);font-size:0.9rem;">
-      Early access: run the canvas extension in VS Code —
-      <a href="https://github.com/vijayptiwari/LangStitch/tree/main/langtailor">build from source</a>
-      or watch
-      <a href="https://github.com/vijayptiwari/LangStitch/actions/workflows/langtailor-extension.yml">CI artifacts</a>
-      for the packaged <code>.vsix</code>.
+    <p class="features-note">
+      Windows portable builds bundle
+      <a href="https://vscodium.com/">VSCodium</a> (Code-OSS) with the LangTailor canvas extension pre-installed.
+      Unsigned dev builds — your OS may show a SmartScreen prompt.
+      <a href="https://github.com/vijayptiwari/LangStitch/releases">All releases</a> ·
+      <a href="https://github.com/vijayptiwari/LangStitch/tree/main/langtailor">Build from source</a>
     </p>
   </section>
 
@@ -71,5 +77,6 @@
       <a href="https://github.com/LangStitch">GitHub</a>
     </p>
   </footer>
+  <script src="releases.js"></script>
 </body>
 </html>
