@@ -18,6 +18,16 @@
     el.removeAttribute('aria-disabled');
   }
 
+  function enableSecondary(id, asset, label) {
+    const el = document.getElementById(id);
+    if (!el || !asset) return;
+    el.href = asset.browser_download_url;
+    el.textContent = label;
+    el.classList.remove('btn-secondary');
+    el.classList.add('btn-inline-link');
+    el.removeAttribute('aria-disabled');
+  }
+
   async function loadReleases() {
     const versionEl = document.getElementById('release-version');
     try {
@@ -31,19 +41,27 @@
         return a.name.endsWith('.vsix');
       });
       const winZip = data.assets.find(function (a) {
-        return /LangTailor-win.*\.zip$/i.test(a.name);
+        return /LangTailor-win.*portable\.zip$/i.test(a.name);
       });
-      const macArm = data.assets.find(function (a) {
-        return /LangTailor-darwin-arm64.*\.zip$/i.test(a.name);
+      const macArmDmg = data.assets.find(function (a) {
+        return /LangTailor-darwin-arm64\.dmg$/i.test(a.name);
       });
-      const macX64 = data.assets.find(function (a) {
-        return /LangTailor-darwin-x64.*\.zip$/i.test(a.name);
+      const macArmZip = data.assets.find(function (a) {
+        return /LangTailor-darwin-arm64-portable\.zip$/i.test(a.name);
+      });
+      const macX64Dmg = data.assets.find(function (a) {
+        return /LangTailor-darwin-x64\.dmg$/i.test(a.name);
+      });
+      const macX64Zip = data.assets.find(function (a) {
+        return /LangTailor-darwin-x64-portable\.zip$/i.test(a.name);
       });
 
       enableDownload('dl-windows', winZip, 'Download portable .zip');
       enableDownload('dl-vsix', vsix, 'Download .vsix');
-      enableDownload('dl-macos-arm64', macArm, 'Download portable .zip');
-      enableDownload('dl-macos-x64', macX64, 'Download portable .zip');
+      enableDownload('dl-macos-arm64', macArmDmg || macArmZip, macArmDmg ? 'Download .dmg' : 'Download portable .zip');
+      enableDownload('dl-macos-x64', macX64Dmg || macX64Zip, macX64Dmg ? 'Download .dmg' : 'Download portable .zip');
+      enableSecondary('dl-macos-arm64-zip', macArmDmg && macArmZip ? macArmZip : null, 'Portable .zip');
+      enableSecondary('dl-macos-x64-zip', macX64Dmg && macX64Zip ? macX64Zip : null, 'Portable .zip');
     } catch (_err) {
       if (versionEl) versionEl.textContent = 'pre-release';
     }

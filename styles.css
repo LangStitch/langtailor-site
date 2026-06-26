@@ -154,6 +154,23 @@ a:hover { text-decoration: underline; }
   display: inline-flex;
 }
 
+.btn-inline-link {
+  margin-top: 0.5rem;
+  width: auto;
+  display: inline-flex;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-inline-link:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
 .card code {
   font-size: 0.8em;
   color: var(--accent-2);
