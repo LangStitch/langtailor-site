@@ -1,5 +1,5 @@
 (function () {
-  const REPO = 'LangStitch/langtailor';
+  const REPO = 'LangStitch/langtailor-releases';
   const OPEN_VSX =
     'https://open-vsx.org/extension/langstitch/langtailor-canvas';
 
