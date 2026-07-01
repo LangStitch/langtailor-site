@@ -40,6 +40,12 @@
       const vsix = data.assets.find(function (a) {
         return a.name.endsWith('.vsix');
       });
+      const winSetup = data.assets.find(function (a) {
+        return /LangTailor-.*-win-x64-setup\.exe$/i.test(a.name);
+      });
+      const winPortableExe = data.assets.find(function (a) {
+        return /LangTailor-.*-win-x64-portable\.exe$/i.test(a.name);
+      });
       const winZip = data.assets.find(function (a) {
         return /LangTailor-win.*portable\.zip$/i.test(a.name);
       });
@@ -56,7 +62,12 @@
         return /LangTailor-darwin-x64-portable\.zip$/i.test(a.name);
       });
 
-      enableDownload('dl-windows', winZip, 'Download portable .zip');
+      enableDownload(
+        'dl-windows',
+        winSetup || winPortableExe || winZip,
+        winSetup ? 'Download installer (.exe)' : winPortableExe ? 'Download portable .exe' : 'Download portable .zip'
+      );
+      enableSecondary('dl-windows-portable', winPortableExe || winZip, winPortableExe ? 'Portable .exe' : 'Portable .zip');
       enableDownload('dl-vsix', vsix, 'Download .vsix');
       enableDownload('dl-macos-arm64', macArmDmg || macArmZip, macArmDmg ? 'Download .dmg' : 'Download portable .zip');
       enableDownload('dl-macos-x64', macX64Dmg || macX64Zip, macX64Dmg ? 'Download .dmg' : 'Download portable .zip');
