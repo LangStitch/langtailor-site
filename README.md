@@ -24,7 +24,7 @@ This repo has its own **Deploy to Hostinger** workflow. Configure these GitHub A
 
 | Secret | Value |
 |--------|--------|
-| `FTP_SERVER` | `ftp.langstitch.com` (or FTP IP from hPanel Plan Details) |
+| `FTP_SERVER` | `ftpupload.net` (Hostinger FTP host) |
 | `FTP_USERNAME` | `u743467360.langtailordeveloper` |
 | `FTP_PASSWORD` | FTP password for that account |
 
