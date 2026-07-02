@@ -1,14 +1,8 @@
 name: Deploy to Hostinger
 
 # Publishes langtailor.langstitch.com to Hostinger over FTPS.
-# FTP account is scoped to public_html/langtailor (deploy to ./).
-#
-# Required secrets:
-#   FTP_SERVER    - 217.21.84.75 (Hostinger FTP IP — no ftp:// prefix)
-#   FTP_USERNAME  - u743467360.langtailordeveloper
-#   FTP_PASSWORD  - FTP account password
-# Optional variable:
-#   FTP_SERVER_DIR - default ./
+# FTP account u743467360.langtailordeveloper is scoped to the langtailor docroot (deploy to ./).
+# Do not share deploy credentials with langstitch-site — product deploys must not overwrite this tree.
 
 on:
   push:
@@ -37,6 +31,7 @@ jobs:
 
       - name: Deploy via FTPS
         if: steps.ftp.outputs.configured == 'true'
+        id: ftps
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -44,8 +39,29 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
+          timeout: 120000
+          state-name: langtailor-hostinger-v3
           exclude: |
             **/.git*
             **/.git*/**
             **/.github/**
             README.md
+
+      - name: Verify live site
+        if: steps.ftp.outputs.configured == 'true' && steps.ftps.outcome == 'success'
+        run: |
+          set -euo pipefail
+          URL="https://langtailor.langstitch.com/"
+          for i in 1 2 3 4 5 6; do
+            BODY="$(curl -fsSL --compressed -H "Cache-Control: no-cache" "$URL" 2>/dev/null || true)"
+            if grep -Fq 'nav-logo__title' <<<"$BODY" && grep -Fq 'Download LangTailor' <<<"$BODY"; then
+              if grep -Fq 'styles.css?v=3' <<<"$BODY"; then
+                echo "Live langtailor site OK at $URL (attempt $i)."
+                exit 0
+              fi
+            fi
+            echo "Waiting for langtailor.langstitch.com to update (attempt $i/6)…"
+            sleep 15
+          done
+          echo "::error::langtailor.langstitch.com did not serve the expected build after deploy."
+          exit 1

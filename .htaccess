@@ -1,0 +1,11 @@
+# langtailor.langstitch.com — ensure UTF-8 and avoid stale caches after redeploys
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html?|css|js|json|svg)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType text/html;charset=UTF-8 .html
+  AddType text/css;charset=UTF-8 .css
+</IfModule>
