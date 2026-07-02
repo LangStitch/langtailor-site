@@ -4,7 +4,7 @@ name: Deploy to Hostinger
 # FTP account is scoped to public_html/langtailor (deploy to ./).
 #
 # Required secrets:
-#   FTP_SERVER    - ftp.langstitch.com (or FTP IP from hPanel Plan Details)
+#   FTP_SERVER    - 217.21.84.75 (Hostinger FTP IP — no ftp:// prefix)
 #   FTP_USERNAME  - u743467360.langtailordeveloper
 #   FTP_PASSWORD  - FTP account password
 # Optional variable:
