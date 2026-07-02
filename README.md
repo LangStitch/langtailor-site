@@ -30,4 +30,8 @@ This repo has its own **Deploy to Hostinger** workflow. Configure these GitHub A
 
 Optional variable `FTP_SERVER_DIR` (default: `domains/langtailor.langstitch.com/public_html/`).
 
-Use the same FTP IP as `langstitch-site` if both sites share the Hostinger account.
+Use the same FTP IP/credentials as `langstitch-site` if both sites share the Hostinger account.
+
+| Variable | Default |
+|----------|---------|
+| `FTP_SERVER_DIR` | `domains/langtailor.langstitch.com/public_html/` |
