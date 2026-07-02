@@ -19,13 +19,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Skip when FTP secrets are not configured (avoids failing CI on forks / unset repos).
-    if: ${{ secrets.FTP_SERVER != '' && secrets.FTP_USERNAME != '' && secrets.FTP_PASSWORD != '' }}
     steps:
+      - name: Check FTP configuration
+        id: ftp
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          if [ -z "$FTP_SERVER" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipping Hostinger deploy — FTP secrets are not configured."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Checkout
+        if: steps.ftp.outputs.configured == 'true'
         uses: actions/checkout@v7
 
       - name: Deploy via FTPS
+        if: steps.ftp.outputs.configured == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
