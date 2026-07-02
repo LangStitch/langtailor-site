@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downloading… — LangTailor</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap" style="padding:80px 20px; text-align:center;">
+    <span class="label">Download</span>
+    <h1 style="margin:12px 0 8px;">Starting download…</h1>
+    <p class="lead" style="margin:0 auto;" id="status">Resolving asset</p>
+    <p class="dim" style="margin-top:16px; font-size:11px; font-family:var(--mono);">
+      <a id="fallback" href="#" hidden>Click here if the download does not start</a>
+    </p>
+  </main>
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var assetId = params.get("asset");
+      var status = document.getElementById("status");
+      var fallback = document.getElementById("fallback");
+
+      if (!assetId) {
+        status.textContent = "Missing asset id.";
+        return;
+      }
+
+      fetch("/assets/data/releases.json", { cache: "no-cache" })
+        .then(function (r) { return r.json(); })
+        .then(function (manifest) {
+          var asset = manifest.downloads.find(function (d) { return d.id === assetId; });
+          if (!asset) throw new Error("Unknown asset: " + assetId);
+
+          status.textContent = asset.label + " · v" + asset.version;
+          fallback.href = asset.url;
+          fallback.hidden = false;
+          window.location.replace(asset.url);
+        })
+        .catch(function (err) {
+          status.textContent = err.message || "Could not resolve download.";
+        });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "langtailor": {
+    "version": "0.2.5",
+    "tag": "langtailor-v0.2.5",
+    "published": "2026-07-02",
+    "repo": "LangStitch/langtailor-releases",
+    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.2.5"
+  },
+  "vsx": {
+    "version": "0.2.7",
+    "extensionId": "langstitch.langtailor-canvas",
+    "openVsxUrl": "https://open-vsx.org/extension/langstitch/langtailor-canvas",
+    "installCommand": "codium --install-extension langstitch.langtailor-canvas",
+    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.5/langtailor-canvas-0.2.7.vsix",
+    "tag": "langtailor-v0.2.5"
+  },
+  "downloadApiBase": "/api/download",
+  "downloads": [
+    {
+      "id": "win-installer",
+      "product": "langtailor",
+      "label": "Windows x64 installer",
+      "meta": "LangTailor-0.2.5-win-x64-setup.exe",
+      "platform": "windows",
+      "version": "0.2.5",
+      "featured": true,
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.5/LangTailor-0.2.5-win-x64-setup.exe"
+    },
+    {
+      "id": "macos-arm64-dmg",
+      "product": "langtailor",
+      "label": "macOS arm64",
+      "meta": "DMG · Apple Silicon",
+      "platform": "macos",
+      "version": "0.1.3",
+      "url": "https://github.com/LangStitch/langtailor/releases/download/langtailor-v0.1.3/LangTailor-darwin-arm64.dmg"
+    },
+    {
+      "id": "macos-x64-dmg",
+      "product": "langtailor",
+      "label": "macOS x64",
+      "meta": "DMG · Intel",
+      "platform": "macos",
+      "version": "0.1.3",
+      "url": "https://github.com/LangStitch/langtailor/releases/download/langtailor-v0.1.3/LangTailor-darwin-x64.dmg"
+    },
+    {
+      "id": "vsx",
+      "product": "vsx",
+      "label": "VSX extension",
+      "meta": "langtailor-canvas-0.2.7.vsix",
+      "platform": "extension",
+      "version": "0.2.7",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.5/langtailor-canvas-0.2.7.vsix"
+    }
+  ],
+  "releaseHistory": [
+    {
+      "tag": "langtailor-v0.2.5",
+      "version": "0.2.5",
+      "published": "2026-07-02",
+      "summary": "Windows x64 installer + langtailor-canvas 0.2.7 VSIX. PyPI export fix.",
+      "latest": true,
+      "repo": "langtailor-releases",
+      "assets": ["win-installer", "vsx"]
+    },
+    {
+      "tag": "langtailor-v0.2.4",
+      "version": "0.2.4",
+      "published": "2026-07-02",
+      "summary": "Windows x64 installer + VSIX 0.2.7.",
+      "repo": "langtailor-releases",
+      "assets": ["win-installer"]
+    },
+    {
+      "tag": "langtailor-v0.1.3",
+      "version": "0.1.3",
+      "published": "2026-06-26",
+      "summary": "macOS arm64/x64 DMG installers.",
+      "repo": "langtailor",
+      "assets": ["macos-arm64-dmg", "macos-x64-dmg"]
+    }
+  ]
+}

@@ -22,7 +22,7 @@ jobs:
       - name: Assemble static site
         run: |
           mkdir _site
-          cp index.html styles.css CNAME _site/
+          cp -r index.html styles.css dl.html CNAME assets _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
