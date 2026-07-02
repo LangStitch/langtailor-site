@@ -1,16 +1,14 @@
 name: Deploy to Hostinger
 
-# Publishes the static site to Hostinger (the live host for
-# langtailor.langstitch.com) over FTPS on every push to main.
+# Publishes langtailor.langstitch.com to Hostinger over FTPS.
+# FTP account is scoped to public_html/langtailor (deploy to ./).
 #
-# Required repository secrets (Settings -> Secrets and variables -> Actions):
-#   FTP_SERVER    - Hostinger FTP IP from hPanel Plan Details (not ftp.langstitch.com
-#                   unless that hostname resolves — use the FTP IP shown in hPanel)
-#   FTP_USERNAME  - FTP account username (e.g. u743467360.langstitchdeployer)
+# Required secrets:
+#   FTP_SERVER    - ftp.langstitch.com (or FTP IP from hPanel Plan Details)
+#   FTP_USERNAME  - u743467360.langtailordeveloper
 #   FTP_PASSWORD  - FTP account password
-# Optional repository variable:
-#   FTP_SERVER_DIR - target docroot for the subdomain
-#                    (defaults to domains/langtailor.langstitch.com/public_html/)
+# Optional variable:
+#   FTP_SERVER_DIR - default ./
 
 on:
   push:
@@ -45,7 +43,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          server-dir: ${{ vars.FTP_SERVER_DIR || 'domains/langtailor.langstitch.com/public_html/' }}
+          server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
           exclude: |
             **/.git*
             **/.git*/**

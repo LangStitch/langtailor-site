@@ -24,14 +24,8 @@ This repo has its own **Deploy to Hostinger** workflow. Configure these GitHub A
 
 | Secret | Value |
 |--------|--------|
-| `FTP_SERVER` | FTP **IP** from hPanel → Plan Details (not `ftp.langstitch.com` unless DNS is set up) |
-| `FTP_USERNAME` | FTP username from hPanel → FTP Accounts |
+| `FTP_SERVER` | `ftp.langstitch.com` (or FTP IP from hPanel Plan Details) |
+| `FTP_USERNAME` | `u743467360.langtailordeveloper` |
 | `FTP_PASSWORD` | FTP password for that account |
 
-Optional variable `FTP_SERVER_DIR` (default: `domains/langtailor.langstitch.com/public_html/`).
-
-Use the same FTP IP/credentials as `langstitch-site` if both sites share the Hostinger account.
-
-| Variable | Default |
-|----------|---------|
-| `FTP_SERVER_DIR` | `domains/langtailor.langstitch.com/public_html/` |
+FTP account is scoped to `public_html/langtailor` — deploy target is `./`.
