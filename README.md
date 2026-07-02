@@ -17,3 +17,17 @@ Landing page for the LangTailor desktop IDE and VSX extension.
 | `assets/js/seo.js` | SEO meta tags and JSON-LD |
 
 Deployed to GitHub Pages and Hostinger on every push to `main`.
+
+## Hostinger deploy (separate pipeline)
+
+This repo has its own **Deploy to Hostinger** workflow. Configure these GitHub Actions secrets on **this repo** (`langtailor-site`):
+
+| Secret | Value |
+|--------|--------|
+| `FTP_SERVER` | FTP **IP** from hPanel → Plan Details (not `ftp.langstitch.com` unless DNS is set up) |
+| `FTP_USERNAME` | FTP username from hPanel → FTP Accounts |
+| `FTP_PASSWORD` | FTP password for that account |
+
+Optional variable `FTP_SERVER_DIR` (default: `domains/langtailor.langstitch.com/public_html/`).
+
+Use the same FTP IP as `langstitch-site` if both sites share the Hostinger account.

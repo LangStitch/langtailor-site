@@ -4,12 +4,13 @@ name: Deploy to Hostinger
 # langtailor.langstitch.com) over FTPS on every push to main.
 #
 # Required repository secrets (Settings -> Secrets and variables -> Actions):
-#   FTP_SERVER    - Hostinger FTP host (e.g. ftp.langstitch.com or the IP)
-#   FTP_USERNAME  - FTP account username
+#   FTP_SERVER    - Hostinger FTP IP from hPanel Plan Details (not ftp.langstitch.com
+#                   unless that hostname resolves — use the FTP IP shown in hPanel)
+#   FTP_USERNAME  - FTP account username (e.g. u743467360.langstitchdeployer)
 #   FTP_PASSWORD  - FTP account password
 # Optional repository variable:
 #   FTP_SERVER_DIR - target docroot for the subdomain
-#                    (defaults to public_html/langtailor/)
+#                    (defaults to domains/langtailor.langstitch.com/public_html/)
 
 on:
   push:
@@ -44,7 +45,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/langtailor/' }}
+          server-dir: ${{ vars.FTP_SERVER_DIR || 'domains/langtailor.langstitch.com/public_html/' }}
           exclude: |
             **/.git*
             **/.git*/**
