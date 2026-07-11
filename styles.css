@@ -601,6 +601,11 @@ h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacin
     background 0.2s var(--ease);
 }
 
+.feat-card.is-animated {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
 .feat-card.is-visible {
   opacity: 1;
   transform: none;

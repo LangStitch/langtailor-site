@@ -14,20 +14,41 @@
   }
 
   var consent = readConsent();
-  var visitorUuid = localStorage.getItem(VISITOR_KEY);
-  var sessionUuid = sessionStorage.getItem(SESSION_KEY);
+  var visitorUuid = null;
+  var sessionUuid = null;
   var sessionStarted = Date.now();
   var scrollSent = {};
   var queue = [];
   var flushTimer = null;
 
-  if (!visitorUuid) {
-    visitorUuid = uuid();
-    localStorage.setItem(VISITOR_KEY, visitorUuid);
+  // IDs are only created/persisted after the visitor accepts analytics.
+  function ensureIds() {
+    try {
+      visitorUuid = localStorage.getItem(VISITOR_KEY);
+      if (!visitorUuid) {
+        visitorUuid = uuid();
+        localStorage.setItem(VISITOR_KEY, visitorUuid);
+      }
+      sessionUuid = sessionStorage.getItem(SESSION_KEY);
+      if (!sessionUuid) {
+        sessionUuid = uuid();
+        sessionStorage.setItem(SESSION_KEY, sessionUuid);
+      }
+    } catch (e) {
+      visitorUuid = visitorUuid || uuid();
+      sessionUuid = sessionUuid || uuid();
+    }
   }
-  if (!sessionUuid) {
-    sessionUuid = uuid();
-    sessionStorage.setItem(SESSION_KEY, sessionUuid);
+
+  function clearIds() {
+    try {
+      localStorage.removeItem(VISITOR_KEY);
+      sessionStorage.removeItem(SESSION_KEY);
+    } catch (e) {
+      /* ignore */
+    }
+    visitorUuid = null;
+    sessionUuid = null;
   }
 
   mountBanner();
@@ -72,7 +93,7 @@
     if (consent === 'accepted' || consent === 'denied') {
       if (consent === 'denied' && !sessionStorage.getItem('ls_analytics_denied_sent')) {
         sessionStorage.setItem('ls_analytics_denied_sent', '1');
-        sendPayload({ consent: 'denied', visitor_uuid: visitorUuid, site: site }, true);
+        sendPayload({ consent: 'denied', site: site }, true);
       }
       return;
     }
@@ -105,8 +126,9 @@
       if (action === 'deny') {
         setConsent('denied');
         root.hidden = true;
+        clearIds();
         sessionStorage.setItem('ls_analytics_denied_sent', '1');
-        sendPayload({ consent: 'denied', visitor_uuid: visitorUuid, site: site }, true);
+        sendPayload({ consent: 'denied', site: site }, true);
       }
     });
 
@@ -199,6 +221,7 @@
   }
 
   function startTracking() {
+    ensureIds();
     trackPageView();
     document.addEventListener('click', onClick, true);
     window.addEventListener('scroll', onScroll, { passive: true });

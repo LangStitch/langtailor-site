@@ -5,11 +5,13 @@
   var cards = grid.querySelectorAll("[data-feat]");
   if (!cards.length) return;
 
+  // Cards are visible by default (CSS). Optional entrance animation only.
   function reveal(el) {
     el.classList.add("is-visible");
+    el.classList.remove("is-animated");
   }
 
-  if (!("IntersectionObserver" in window)) {
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     cards.forEach(reveal);
     return;
   }
@@ -22,10 +24,16 @@
         observer.unobserve(entry.target);
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -32px 0px" }
+    { threshold: 0.08, rootMargin: "0px 0px -24px 0px" }
   );
 
   cards.forEach(function (card) {
-    observer.observe(card);
+    var top = card.getBoundingClientRect().top;
+    if (top < window.innerHeight * 0.92) {
+      reveal(card);
+    } else {
+      card.classList.add("is-animated");
+      observer.observe(card);
+    }
   });
 })();

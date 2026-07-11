@@ -62,25 +62,33 @@
       (featured || asset.featured ? "btn-primary" : "btn-outline") +
       ' btn-sm" href="' +
       downloadHref(asset.id) +
-      '" data-track-download="' +
-      asset.id +
       '">Download</a></div>';
     return row;
   }
 
+  function manifestUnavailable(root) {
+    root.innerHTML =
+      '<p class="dim">Release data is temporarily unavailable. Get downloads from ' +
+      '<a href="https://github.com/LangStitch/langtailor-releases/releases" rel="noopener">GitHub releases</a>.</p>';
+  }
+
   function mountDownloads(root, filter) {
     if (!root) return;
-    fetchManifest().then(function (m) {
-      var items = m.downloads.filter(function (d) {
-        if (filter === "langtailor") return d.product === "langtailor";
-        if (filter === "vsx") return d.product === "vsx";
-        return true;
+    fetchManifest()
+      .then(function (m) {
+        var items = m.downloads.filter(function (d) {
+          if (filter === "langtailor") return d.product === "langtailor";
+          if (filter === "vsx") return d.product === "vsx";
+          return true;
+        });
+        root.innerHTML = "";
+        items.forEach(function (asset) {
+          root.appendChild(renderDownloadRow(asset));
+        });
+      })
+      .catch(function () {
+        manifestUnavailable(root);
       });
-      root.innerHTML = "";
-      items.forEach(function (asset) {
-        root.appendChild(renderDownloadRow(asset));
-      });
-    });
   }
 
   function ensureStripClass(root) {
@@ -93,23 +101,28 @@
   function mountReleaseStrip(root) {
     if (!root) return;
     ensureStripClass(root);
-    fetchManifest().then(function (m) {
-      var lt = m.langtailor;
-      ensureStripClass(root);
-      root.innerHTML =
-        '<span class="tag tag--live">Latest</span>' +
-        "<strong>LangTailor v" +
-        lt.version +
-        "</strong>" +
-        '<span class="dim">' +
-        formatDate(lt.published) +
-        "</span>" +
-        '<a href="' +
-        lt.notesUrl +
-        '">Release notes</a>' +
-        '<span class="dim dl-stats" data-dl-stats hidden></span>';
-      refreshStats(root.querySelector("[data-dl-stats]"));
-    });
+    fetchManifest()
+      .then(function (m) {
+        var lt = m.langtailor;
+        ensureStripClass(root);
+        root.innerHTML =
+          '<span class="tag tag--live">Latest</span>' +
+          "<strong>LangTailor v" +
+          lt.version +
+          "</strong>" +
+          '<span class="dim">' +
+          formatDate(lt.published) +
+          "</span>" +
+          '<a href="' +
+          lt.notesUrl +
+          '">Release notes</a>' +
+          '<span class="dim dl-stats" data-dl-stats hidden></span>';
+        refreshStats(root.querySelector("[data-dl-stats]"));
+      })
+      .catch(function () {
+        root.innerHTML =
+          '<a href="https://github.com/LangStitch/langtailor-releases/releases" rel="noopener">Latest releases on GitHub</a>';
+      });
   }
 
   function historyAssetButtons(rel) {
@@ -141,48 +154,56 @@
 
   function mountReleaseHistory(root) {
     if (!root) return;
-    fetchManifest().then(function (m) {
-      root.innerHTML = "";
-      m.releaseHistory.forEach(function (rel) {
-        var row = document.createElement("div");
-        row.className = "dl-row" + (rel.latest ? " dl-row--featured" : "");
-        var actions = historyAssetButtons(rel);
-        var notesHref =
-          "https://github.com/LangStitch/" +
-          rel.repo +
-          "/releases/tag/" +
-          rel.tag;
-        row.innerHTML =
-          '<div class="dl-row__info"><h3>' +
-          rel.tag +
-          '</h3><div class="dl-row__meta">' +
-          rel.summary +
-          " · " +
-          formatDate(rel.published) +
-          '</div></div><div class="dl-row__ver">' +
-          (rel.latest ? '<span class="tag tag--live">Latest</span>' : "v" + rel.version) +
-          '</div><div class="dl-row__actions">' +
-          actions +
-          '<a class="btn btn-ghost btn-sm" href="' +
-          notesHref +
-          '">Notes</a></div>';
-        root.appendChild(row);
+    fetchManifest()
+      .catch(function () {
+        manifestUnavailable(root);
+        return null;
+      })
+      .then(function (m) {
+        if (!m) return;
+        root.innerHTML = "";
+        m.releaseHistory.forEach(function (rel) {
+          var row = document.createElement("div");
+          row.className = "dl-row" + (rel.latest ? " dl-row--featured" : "");
+          var actions = historyAssetButtons(rel);
+          var notesHref =
+            "https://github.com/LangStitch/" +
+            rel.repo +
+            "/releases/tag/" +
+            rel.tag;
+          row.innerHTML =
+            '<div class="dl-row__info"><h3>' +
+            rel.tag +
+            '</h3><div class="dl-row__meta">' +
+            rel.summary +
+            " · " +
+            formatDate(rel.published) +
+            '</div></div><div class="dl-row__ver">' +
+            (rel.latest ? '<span class="tag tag--live">Latest</span>' : "v" + rel.version) +
+            '</div><div class="dl-row__actions">' +
+            actions +
+            '<a class="btn btn-ghost btn-sm" href="' +
+            notesHref +
+            '">Notes</a></div>';
+          root.appendChild(row);
+        });
       });
-    });
   }
 
   function hydrateVersionTags() {
-    fetchManifest().then(function (m) {
-      document.querySelectorAll("[data-langtailor-version]").forEach(function (el) {
-        el.textContent = "v" + m.langtailor.version;
-      });
-      document.querySelectorAll("[data-vsx-version]").forEach(function (el) {
-        el.textContent = "v" + m.vsx.version;
-      });
-      document.querySelectorAll("[data-langtailor-download]").forEach(function (el) {
-        el.setAttribute("href", downloadHref("win-installer"));
-      });
-    });
+    fetchManifest()
+      .then(function (m) {
+        document.querySelectorAll("[data-langtailor-version]").forEach(function (el) {
+          el.textContent = "v" + m.langtailor.version;
+        });
+        document.querySelectorAll("[data-vsx-version]").forEach(function (el) {
+          el.textContent = "v" + m.vsx.version;
+        });
+        document.querySelectorAll("[data-langtailor-download]").forEach(function (el) {
+          el.setAttribute("href", downloadHref("win-installer"));
+        });
+      })
+      .catch(function () {});
   }
 
   function refreshStats(el) {
@@ -234,21 +255,19 @@
     refreshStats(document.querySelector("[data-dl-stats]"));
     initNavDrawer();
 
-    document.querySelectorAll("[data-vsx-install-cmd]").forEach(function (el) {
-      fetchManifest().then(function (m) {
-        el.textContent = m.vsx.installCommand;
-      });
-    });
-    document.querySelectorAll("[data-vsx-openvsx]").forEach(function (el) {
-      fetchManifest().then(function (m) {
-        el.setAttribute("href", m.vsx.openVsxUrl);
-      });
-    });
-    document.querySelectorAll("[data-vsx-download]").forEach(function (el) {
-      fetchManifest().then(function (m) {
-        el.setAttribute("href", downloadHref("vsx"));
-      });
-    });
+    fetchManifest()
+      .then(function (m) {
+        document.querySelectorAll("[data-vsx-install-cmd]").forEach(function (el) {
+          el.textContent = m.vsx.installCommand;
+        });
+        document.querySelectorAll("[data-vsx-openvsx]").forEach(function (el) {
+          el.setAttribute("href", m.vsx.openVsxUrl);
+        });
+        document.querySelectorAll("[data-vsx-download]").forEach(function (el) {
+          el.setAttribute("href", downloadHref("vsx"));
+        });
+      })
+      .catch(function () {});
   }
 
   if (document.readyState === "loading") {

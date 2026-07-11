@@ -365,7 +365,7 @@
     upsertMeta("og:image:alt", imageAlt, true);
     upsertMeta("og:image:width", "1200", true);
     upsertMeta("og:image:height", "630", true);
-    upsertMeta("og:image:type", "image/svg+xml", true);
+    upsertMeta("og:image:type", "image/png", true);
     upsertMeta("og:locale", "en_US", true);
 
     upsertMeta("twitter:card", "summary_large_image");

@@ -22,7 +22,12 @@ jobs:
       - name: Assemble static site
         run: |
           mkdir _site
-          cp -r index.html styles.css dl.html CNAME assets _site/
+          cp -r index.html styles.css dl.html CNAME sitemap.xml robots.txt assets _site/
+      - name: Verify built site
+        run: |
+          grep -Fq 'styles.css?v=5' _site/index.html
+          test -f _site/sitemap.xml
+          test -f _site/robots.txt
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

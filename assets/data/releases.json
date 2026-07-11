@@ -115,17 +115,6 @@
       "assets": {
         "win-installer": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.4/LangTailor-0.2.4-win-x64-setup.exe"
       }
-    },
-    {
-      "tag": "langtailor-v0.1.3",
-      "version": "0.1.3",
-      "published": "2026-06-26",
-      "summary": "macOS arm64/x64 DMG installers (legacy private repo path).",
-      "repo": "langtailor",
-      "assets": {
-        "macos-arm64-dmg": "https://github.com/LangStitch/langtailor/releases/download/langtailor-v0.1.3/LangTailor-darwin-arm64.dmg",
-        "macos-x64-dmg": "https://github.com/LangStitch/langtailor/releases/download/langtailor-v0.1.3/LangTailor-darwin-x64.dmg"
-      }
     }
   ]
 }

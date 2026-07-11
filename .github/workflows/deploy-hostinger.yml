@@ -1,7 +1,7 @@
 name: Deploy to Hostinger
 
 # Publishes langtailor.langstitch.com to Hostinger over FTPS.
-# FTP account u743467360.langtailordeveloper is scoped to the langtailor docroot (deploy to ./).
+# The FTP account (secrets) is scoped to the langtailor docroot (deploy to ./).
 # Do not share deploy credentials with langstitch-site — product deploys must not overwrite this tree.
 
 on:
@@ -55,7 +55,7 @@ jobs:
           for i in 1 2 3 4 5 6; do
             BODY="$(curl -fsSL --compressed -H "Cache-Control: no-cache" "$URL" 2>/dev/null || true)"
             if grep -Fq 'nav-logo__title' <<<"$BODY" && grep -Fq 'Download LangTailor' <<<"$BODY"; then
-              if grep -Fq 'styles.css?v=4' <<<"$BODY"; then
+              if grep -Fq 'styles.css?v=5' <<<"$BODY"; then
                 echo "Live langtailor site OK at $URL (attempt $i)."
                 exit 0
               fi
