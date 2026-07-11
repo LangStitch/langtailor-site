@@ -31,6 +31,10 @@
   }
 
   mountBanner();
+  mountPrivacySection();
+  window.addEventListener('hashchange', syncPrivacyVisibility);
+  syncPrivacyVisibility();
+  document.addEventListener('keydown', onPrivacyKeydown);
 
   if (consent === 'accepted') {
     startTracking();
@@ -107,6 +111,91 @@
     });
 
     document.body.appendChild(root);
+  }
+
+  var PRIVACY_BODY =
+    '<h3>Overview</h3>' +
+    '<p>LangStitch runs first-party analytics on our public sites to understand how visitors use pages and features. We do not use third-party ad trackers or sell visitor data.</p>' +
+    '<h3>What we collect (with consent)</h3>' +
+    '<ul>' +
+    '<li>Pages viewed, clicks, scroll depth, and time on page</li>' +
+    '<li>Browser, operating system, device type, screen size, and language</li>' +
+    '<li>Approximate location (country/region/city derived from IP)</li>' +
+    '<li>Referrer, UTM campaign parameters, and landing URL</li>' +
+    '<li>A random visitor ID stored in your browser (local storage) and a session ID (session storage)</li>' +
+    '</ul>' +
+    '<h3>Your choices</h3>' +
+    '<p>Accept or decline analytics in the cookie banner. If you decline, we do not set tracking cookies or record browsing events. You can clear site data in your browser to reset your choice.</p>' +
+    '<h3>Data requests</h3>' +
+    '<p>Email <a href="mailto:connect@langstitch.com?subject=Privacy%20request">connect@langstitch.com</a> to ask about your data or request deletion.</p>' +
+    '<p class="privacy-updated"><em>Last updated: July 2026</em></p>';
+
+  var privacyOverlay = site === 'marketplace';
+
+  function mountPrivacySection() {
+    var el = document.getElementById('privacy');
+    if (!el) {
+      el = document.createElement('section');
+      el.id = 'privacy';
+      document.body.appendChild(el);
+    }
+    if (privacyOverlay) {
+      el.className = 'ls-privacy ls-privacy--overlay';
+      el.setAttribute('role', 'dialog');
+      el.setAttribute('aria-modal', 'true');
+      el.setAttribute('aria-label', 'Privacy notice');
+      el.innerHTML =
+        '<div class="ls-privacy__dialog">' +
+        '<button type="button" class="ls-privacy__close" aria-label="Close privacy notice">&times;</button>' +
+        '<p class="ls-privacy__label">Privacy</p>' +
+        '<h2 class="ls-privacy__title">Analytics &amp; cookies</h2>' +
+        '<div class="privacy-panel">' +
+        PRIVACY_BODY +
+        '</div></div>';
+      el.addEventListener('click', function (ev) {
+        if (ev.target === el || ev.target.closest('.ls-privacy__close')) {
+          closePrivacyOverlay();
+        }
+      });
+      return;
+    }
+    if (!el.querySelector('.privacy-panel')) {
+      var panel = document.createElement('div');
+      panel.className = 'privacy-panel';
+      panel.innerHTML = PRIVACY_BODY;
+      el.appendChild(panel);
+    }
+  }
+
+  function syncPrivacyVisibility() {
+    var el = document.getElementById('privacy');
+    if (!el) return;
+    var open = location.hash === '#privacy';
+    if (privacyOverlay) {
+      el.classList.toggle('ls-privacy--open', open);
+      el.hidden = !open;
+      el.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.classList.toggle('ls-privacy-lock', open);
+      return;
+    }
+    el.hidden = false;
+    el.removeAttribute('aria-hidden');
+    if (open) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function closePrivacyOverlay() {
+    if (location.hash === '#privacy') {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    syncPrivacyVisibility();
+  }
+
+  function onPrivacyKeydown(ev) {
+    if (ev.key === 'Escape' && location.hash === '#privacy' && privacyOverlay) {
+      closePrivacyOverlay();
+    }
   }
 
   function startTracking() {

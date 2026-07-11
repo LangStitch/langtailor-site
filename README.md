@@ -24,8 +24,8 @@ This repo has its own **Deploy to Hostinger** workflow. Configure these GitHub A
 
 | Secret | Value |
 |--------|--------|
-| `FTP_SERVER` | `217.21.84.75` (no `ftp://` prefix) |
-| `FTP_USERNAME` | `u743467360.langtailordeveloper` |
+| `FTP_SERVER` | Hostinger FTP host (IP only, no `ftp://` prefix) |
+| `FTP_USERNAME` | FTP username for the langtailor.langstitch.com account |
 | `FTP_PASSWORD` | FTP password for that account |
 
 FTP account is scoped to `public_html/langtailor` — deploy target is `./`.

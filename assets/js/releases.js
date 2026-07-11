@@ -2,6 +2,13 @@
   var MANIFEST_URL = "/assets/data/releases.json";
   var cache = null;
 
+  var ASSET_LABELS = {
+    "win-installer": "Windows",
+    "macos-arm64-dmg": "macOS arm64",
+    "macos-x64-dmg": "macOS x64",
+    vsx: "VSX"
+  };
+
   function fetchManifest() {
     if (cache) return Promise.resolve(cache);
     return fetch(MANIFEST_URL, { cache: "no-cache" })
@@ -76,10 +83,19 @@
     });
   }
 
+  function ensureStripClass(root) {
+    if (!root) return;
+    if ((" " + root.className + " ").indexOf(" strip ") === -1) {
+      root.className = (root.className ? root.className + " " : "") + "strip";
+    }
+  }
+
   function mountReleaseStrip(root) {
     if (!root) return;
+    ensureStripClass(root);
     fetchManifest().then(function (m) {
       var lt = m.langtailor;
+      ensureStripClass(root);
       root.innerHTML =
         '<span class="tag tag--live">Latest</span>' +
         "<strong>LangTailor v" +
@@ -96,6 +112,33 @@
     });
   }
 
+  function historyAssetButtons(rel) {
+    var assets = rel.assets;
+    if (!assets || typeof assets !== "object" || Array.isArray(assets)) {
+      return "";
+    }
+    var keys = Object.keys(assets);
+    if (!keys.length) return "";
+
+    return keys
+      .map(function (id) {
+        var url = assets[id];
+        if (!url) return "";
+        var label = ASSET_LABELS[id] || id;
+        var primary = rel.latest && id === "win-installer";
+        return (
+          '<a class="btn ' +
+          (primary ? "btn-primary" : "btn-outline") +
+          ' btn-sm" href="' +
+          url +
+          '" rel="noopener">' +
+          label +
+          "</a>"
+        );
+      })
+      .join("");
+  }
+
   function mountReleaseHistory(root) {
     if (!root) return;
     fetchManifest().then(function (m) {
@@ -103,27 +146,16 @@
       m.releaseHistory.forEach(function (rel) {
         var row = document.createElement("div");
         row.className = "dl-row" + (rel.latest ? " dl-row--featured" : "");
-        var actions = rel.assets
-          .map(function (id) {
-            var asset = m.downloads.find(function (d) {
-              return d.id === id;
-            });
-            if (!asset) return "";
-            return (
-              '<a class="btn ' +
-              (rel.latest && asset.featured ? "btn-primary" : "btn-outline") +
-              ' btn-sm" href="' +
-              downloadHref(asset.id) +
-              '">' +
-              asset.label +
-              "</a>"
-            );
-          })
-          .join("");
+        var actions = historyAssetButtons(rel);
+        var notesHref =
+          "https://github.com/LangStitch/" +
+          rel.repo +
+          "/releases/tag/" +
+          rel.tag;
         row.innerHTML =
           '<div class="dl-row__info"><h3>' +
           rel.tag +
-          "</h3><div class=\"dl-row__meta\">" +
+          '</h3><div class="dl-row__meta">' +
           rel.summary +
           " · " +
           formatDate(rel.published) +
@@ -131,10 +163,8 @@
           (rel.latest ? '<span class="tag tag--live">Latest</span>' : "v" + rel.version) +
           '</div><div class="dl-row__actions">' +
           actions +
-          '<a class="btn btn-ghost btn-sm" href="https://github.com/LangStitch/' +
-          rel.repo +
-          "/releases/tag/" +
-          rel.tag +
+          '<a class="btn btn-ghost btn-sm" href="' +
+          notesHref +
           '">Notes</a></div>';
         root.appendChild(row);
       });
@@ -157,19 +187,42 @@
 
   function refreshStats(el) {
     if (!el) return;
-    fetchManifest().then(function (m) {
-      return fetch(statsUrl(m.downloadApiBase), { mode: "cors", cache: "no-cache" })
-        .then(function (r) {
-          if (!r.ok) return null;
-          return r.json();
-        })
-        .then(function (data) {
-          if (!data || !data.total) return;
-          el.textContent =
-            data.total + " site download" + (data.total === 1 ? "" : "s");
-          el.hidden = false;
-        });
-    }).catch(function () {});
+    fetchManifest()
+      .then(function (m) {
+        return fetch(statsUrl(m.downloadApiBase), { mode: "cors", cache: "no-cache" })
+          .then(function (r) {
+            if (!r.ok) return null;
+            return r.json();
+          })
+          .then(function (data) {
+            if (!data || !data.total) return;
+            el.textContent =
+              data.total + " site download" + (data.total === 1 ? "" : "s");
+            el.hidden = false;
+          });
+      })
+      .catch(function () {});
+  }
+
+  function initNavDrawer() {
+    var toggle = document.getElementById("nav-toggle");
+    if (!toggle) return;
+
+    function syncBodyLock() {
+      document.body.classList.toggle("nav-open", toggle.checked);
+    }
+
+    toggle.addEventListener("change", syncBodyLock);
+    syncBodyLock();
+
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        if (toggle.checked) {
+          toggle.checked = false;
+          syncBodyLock();
+        }
+      });
+    });
   }
 
   function init() {
@@ -179,6 +232,7 @@
     mountReleaseHistory(document.querySelector("[data-mount=release-history]"));
     hydrateVersionTags();
     refreshStats(document.querySelector("[data-dl-stats]"));
+    initNavDrawer();
 
     document.querySelectorAll("[data-vsx-install-cmd]").forEach(function (el) {
       fetchManifest().then(function (m) {
