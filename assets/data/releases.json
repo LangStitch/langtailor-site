@@ -1,18 +1,18 @@
 {
   "langtailor": {
-    "version": "0.2.6",
-    "tag": "langtailor-v0.2.6",
-    "published": "2026-07-02",
+    "version": "0.2.9",
+    "tag": "langtailor-v0.2.9",
+    "published": "2026-07-11",
     "repo": "LangStitch/langtailor-releases",
-    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.2.6"
+    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.2.9"
   },
   "vsx": {
-    "version": "0.2.7",
+    "version": "0.2.9",
     "extensionId": "langstitch.langtailor-canvas",
     "openVsxUrl": "https://open-vsx.org/extension/langstitch/langtailor-canvas",
     "installCommand": "codium --install-extension langstitch.langtailor-canvas",
-    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.6/langtailor-canvas-0.2.7.vsix",
-    "tag": "langtailor-v0.2.6"
+    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.9/langtailor-canvas-0.2.9.vsix",
+    "tag": "langtailor-v0.2.9"
   },
   "downloadApiBase": "https://api.langstitch.com/api/download",
   "downloads": [
@@ -20,47 +20,64 @@
       "id": "win-installer",
       "product": "langtailor",
       "label": "Windows x64 installer",
-      "meta": "LangTailor-0.2.6-win-x64-setup.exe",
+      "meta": "LangTailor-0.2.9-win-x64-setup.exe",
       "platform": "windows",
-      "version": "0.2.6",
+      "version": "0.2.9",
       "featured": true,
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.6/LangTailor-0.2.6-win-x64-setup.exe"
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.9/LangTailor-0.2.9-win-x64-setup.exe"
     },
     {
       "id": "macos-arm64-dmg",
       "product": "langtailor",
       "label": "macOS arm64",
-      "meta": "DMG · Apple Silicon · newer builds pending publish",
+      "meta": "LangTailor-0.2.9-darwin-arm64.dmg · Apple Silicon",
       "platform": "macos",
-      "version": "0.1.3",
-      "url": "https://github.com/LangStitch/langtailor/releases/download/langtailor-v0.1.3/LangTailor-darwin-arm64.dmg"
+      "version": "0.2.9",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.9/LangTailor-0.2.9-darwin-arm64.dmg"
     },
     {
       "id": "macos-x64-dmg",
       "product": "langtailor",
       "label": "macOS x64",
-      "meta": "DMG · Intel · newer builds pending publish",
+      "meta": "LangTailor-0.2.9-darwin-x64.dmg · Intel",
       "platform": "macos",
-      "version": "0.1.3",
-      "url": "https://github.com/LangStitch/langtailor/releases/download/langtailor-v0.1.3/LangTailor-darwin-x64.dmg"
+      "version": "0.2.9",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.9/LangTailor-0.2.9-darwin-x64.dmg"
     },
     {
       "id": "vsx",
       "product": "vsx",
       "label": "VSX extension",
-      "meta": "langtailor-canvas-0.2.7.vsix",
+      "meta": "langtailor-canvas-0.2.9.vsix",
       "platform": "extension",
-      "version": "0.2.7",
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.6/langtailor-canvas-0.2.7.vsix"
+      "version": "0.2.9",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.9/langtailor-canvas-0.2.9.vsix"
     }
   ],
   "releaseHistory": [
+    {
+      "tag": "langtailor-v0.2.9",
+      "version": "0.2.9",
+      "published": "2026-07-11",
+      "summary": "Windows + macOS installers, VSIX 0.2.9, marketplace catalog expanded to 77 items (12 MCP server packs, 10 utility plugins).",
+      "latest": true,
+      "repo": "langtailor-releases",
+      "assets": ["win-installer", "macos-arm64-dmg", "macos-x64-dmg", "vsx"]
+    },
+    {
+      "tag": "langtailor-v0.2.8",
+      "version": "0.2.8",
+      "published": "2026-07-11",
+      "summary": "Connector and template marketplace releases; release pipeline fixes for macOS and artifact upload.",
+      "repo": "langtailor-releases",
+      "assets": ["win-installer", "macos-arm64-dmg", "macos-x64-dmg", "vsx"]
+    },
     {
       "tag": "langtailor-v0.2.6",
       "version": "0.2.6",
       "published": "2026-07-02",
       "summary": "Windows x64 installer + langtailor-canvas 0.2.7 VSIX. Hosted API fallback for marketplace auth.",
-      "latest": true,
+      "latest": false,
       "repo": "langtailor-releases",
       "assets": ["win-installer", "vsx"]
     },
@@ -84,7 +101,7 @@
       "tag": "langtailor-v0.1.3",
       "version": "0.1.3",
       "published": "2026-06-26",
-      "summary": "macOS arm64/x64 DMG installers.",
+      "summary": "macOS arm64/x64 DMG installers (legacy private repo path).",
       "repo": "langtailor",
       "assets": ["macos-arm64-dmg", "macos-x64-dmg"]
     }

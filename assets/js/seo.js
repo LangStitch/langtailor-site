@@ -20,9 +20,9 @@
     (location.hostname === "langtailor.langstitch.com"
       ? "https://langtailor.langstitch.com"
       : SITE_ORIGIN) + "/assets/brand-logo.svg";
-  var VERSION = "0.2.6";
+  var VERSION = "0.2.9";
   var DOWNLOAD_URL =
-    "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.6/LangTailor-0.2.6-win-x64-setup.exe";
+    "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.9/LangTailor-0.2.9-win-x64-setup.exe";
 
   var ORG = {
     "@type": "Organization",
@@ -137,7 +137,7 @@
     langtailor: {
       title: "Download LangTailor · Free Visual Agent IDE — Windows & macOS",
       description:
-        "Download LangTailor v0.2.6 — the LangStitch desktop agent IDE. Visual canvas, multi-language export, terminal, git, Docker/Helm deploy. Free MIT license.",
+        "Download LangTailor v0.2.9 — the LangStitch desktop agent IDE. Visual canvas, multi-language export, terminal, git, Docker/Helm deploy. Free MIT license.",
       keywords:
         "download LangTailor, LangStitch IDE, agent IDE download, Windows installer, macOS DMG, visual LangGraph IDE, free developer tools",
       canonical: LANGTAILOR_URL,
