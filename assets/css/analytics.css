@@ -1,0 +1,83 @@
+/* LangStitch first-party analytics consent banner */
+
+.ls-consent {
+  position: fixed;
+  inset: auto 16px 16px 16px;
+  z-index: 9999;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 16px 18px;
+  border: 1px solid var(--line-strong, #262626);
+  border-radius: 6px;
+  background: rgba(10, 10, 10, 0.96);
+  backdrop-filter: blur(8px);
+  color: var(--text, #f5f5f5);
+  font-family: var(--font, system-ui, sans-serif);
+  font-size: 12px;
+  line-height: 1.55;
+  box-shadow: none;
+}
+
+.ls-consent[hidden] {
+  display: none !important;
+}
+
+.ls-consent__title {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.ls-consent__text {
+  margin: 0 0 12px;
+  color: var(--text-2, #b4b8c0);
+}
+
+.ls-consent__text a {
+  color: var(--signal, #00e5a0);
+  text-decoration: underline;
+}
+
+.ls-consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ls-consent__btn {
+  appearance: none;
+  border: 1px solid var(--line-strong, #262626);
+  border-radius: 4px;
+  background: var(--surface, #0a0a0a);
+  color: var(--text, #f5f5f5);
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.ls-consent__btn:hover {
+  border-color: var(--text-3, #8b929e);
+}
+
+.ls-consent__btn--accept {
+  background: var(--signal, #00e5a0);
+  border-color: var(--signal, #00e5a0);
+  color: #001a12;
+}
+
+.ls-consent__btn--accept:hover {
+  filter: brightness(1.05);
+}
+
+@media (min-width: 720px) {
+  .ls-consent {
+    left: auto;
+    right: 20px;
+    bottom: 20px;
+    margin: 0;
+  }
+}

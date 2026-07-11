@@ -27,6 +27,7 @@
   <script src="assets/js/seo.js" defer></script>
   <script src="assets/js/releases.js" defer></script>
   <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="assets/css/analytics.css" />
 </head>
 <body>
   <nav class="nav">
@@ -372,6 +373,11 @@
       <div class="contact-panel">
         <a class="contact-email" href="mailto:connect@langstitch.com?subject=LangTailor%20business%20or%20training%20inquiry">connect@langstitch.com</a>
         <p class="contact-note">Business · training · workshops · partnerships</p>
+        <p class="contact-note" style="margin-top:14px;">
+          <strong>Privacy:</strong> If you accept analytics cookies we record pages viewed, device/browser details,
+          and approximate location (from IP) in our database. Decline to opt out. Email
+          <a href="mailto:connect@langstitch.com">connect@langstitch.com</a> for data requests.
+        </p>
       </div>
     </div>
   </section>
@@ -392,5 +398,7 @@
       <p class="footer-copy">MIT · <a href="https://github.com/LangStitch">github.com/LangStitch</a></p>
     </div>
   </footer>
+  <section id="privacy" hidden aria-hidden="true"></section>
+  <script src="assets/js/analytics.js" data-site="langtailor" defer></script>
 </body>
 </html>
