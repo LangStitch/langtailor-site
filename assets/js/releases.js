@@ -19,8 +19,14 @@
     return "/dl.html?asset=" + encodeURIComponent(assetId);
   }
 
-  function trackUrl(assetId) {
-    return "/api/download/" + encodeURIComponent(assetId);
+  function trackUrl(assetId, apiBase) {
+    var base = apiBase || "https://api.langstitch.com/api/download";
+    return base.replace(/\/$/, "") + "/" + encodeURIComponent(assetId);
+  }
+
+  function statsUrl(apiBase) {
+    var base = apiBase || "https://api.langstitch.com/api/download";
+    return base.replace(/\/$/, "") + "/stats";
   }
 
   function formatDate(iso) {
@@ -151,6 +157,19 @@
 
   function refreshStats(el) {
     if (!el) return;
+    fetchManifest().then(function (m) {
+      return fetch(statsUrl(m.downloadApiBase), { mode: "cors", cache: "no-cache" })
+        .then(function (r) {
+          if (!r.ok) return null;
+          return r.json();
+        })
+        .then(function (data) {
+          if (!data || !data.total) return;
+          el.textContent =
+            data.total + " site download" + (data.total === 1 ? "" : "s");
+          el.hidden = false;
+        });
+    }).catch(function () {});
   }
 
   function init() {

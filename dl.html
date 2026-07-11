@@ -41,7 +41,9 @@
           status.textContent = asset.label + " · v" + asset.version;
           fallback.href = asset.url;
           fallback.hidden = false;
-          window.location.replace(asset.url);
+          var track = (manifest.downloadApiBase || "https://api.langstitch.com/api/download")
+            .replace(/\/$/, "") + "/" + encodeURIComponent(assetId);
+          window.location.replace(track);
         })
         .catch(function (err) {
           status.textContent = err.message || "Could not resolve download.";

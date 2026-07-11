@@ -1,36 +1,36 @@
 {
   "langtailor": {
-    "version": "0.2.5",
-    "tag": "langtailor-v0.2.5",
+    "version": "0.2.6",
+    "tag": "langtailor-v0.2.6",
     "published": "2026-07-02",
     "repo": "LangStitch/langtailor-releases",
-    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.2.5"
+    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.2.6"
   },
   "vsx": {
     "version": "0.2.7",
     "extensionId": "langstitch.langtailor-canvas",
     "openVsxUrl": "https://open-vsx.org/extension/langstitch/langtailor-canvas",
     "installCommand": "codium --install-extension langstitch.langtailor-canvas",
-    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.5/langtailor-canvas-0.2.7.vsix",
-    "tag": "langtailor-v0.2.5"
+    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.6/langtailor-canvas-0.2.7.vsix",
+    "tag": "langtailor-v0.2.6"
   },
-  "downloadApiBase": "/api/download",
+  "downloadApiBase": "https://api.langstitch.com/api/download",
   "downloads": [
     {
       "id": "win-installer",
       "product": "langtailor",
       "label": "Windows x64 installer",
-      "meta": "LangTailor-0.2.5-win-x64-setup.exe",
+      "meta": "LangTailor-0.2.6-win-x64-setup.exe",
       "platform": "windows",
-      "version": "0.2.5",
+      "version": "0.2.6",
       "featured": true,
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.5/LangTailor-0.2.5-win-x64-setup.exe"
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.6/LangTailor-0.2.6-win-x64-setup.exe"
     },
     {
       "id": "macos-arm64-dmg",
       "product": "langtailor",
       "label": "macOS arm64",
-      "meta": "DMG · Apple Silicon",
+      "meta": "DMG · Apple Silicon · newer builds pending publish",
       "platform": "macos",
       "version": "0.1.3",
       "url": "https://github.com/LangStitch/langtailor/releases/download/langtailor-v0.1.3/LangTailor-darwin-arm64.dmg"
@@ -39,7 +39,7 @@
       "id": "macos-x64-dmg",
       "product": "langtailor",
       "label": "macOS x64",
-      "meta": "DMG · Intel",
+      "meta": "DMG · Intel · newer builds pending publish",
       "platform": "macos",
       "version": "0.1.3",
       "url": "https://github.com/LangStitch/langtailor/releases/download/langtailor-v0.1.3/LangTailor-darwin-x64.dmg"
@@ -51,16 +51,24 @@
       "meta": "langtailor-canvas-0.2.7.vsix",
       "platform": "extension",
       "version": "0.2.7",
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.5/langtailor-canvas-0.2.7.vsix"
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.6/langtailor-canvas-0.2.7.vsix"
     }
   ],
   "releaseHistory": [
+    {
+      "tag": "langtailor-v0.2.6",
+      "version": "0.2.6",
+      "published": "2026-07-02",
+      "summary": "Windows x64 installer + langtailor-canvas 0.2.7 VSIX. Hosted API fallback for marketplace auth.",
+      "latest": true,
+      "repo": "langtailor-releases",
+      "assets": ["win-installer", "vsx"]
+    },
     {
       "tag": "langtailor-v0.2.5",
       "version": "0.2.5",
       "published": "2026-07-02",
       "summary": "Windows x64 installer + langtailor-canvas 0.2.7 VSIX. PyPI export fix.",
-      "latest": true,
       "repo": "langtailor-releases",
       "assets": ["win-installer", "vsx"]
     },
