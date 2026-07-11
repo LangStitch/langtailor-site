@@ -55,7 +55,7 @@ jobs:
           for i in 1 2 3 4 5 6; do
             BODY="$(curl -fsSL --compressed -H "Cache-Control: no-cache" "$URL" 2>/dev/null || true)"
             if grep -Fq 'nav-logo__title' <<<"$BODY" && grep -Fq 'Download LangTailor' <<<"$BODY"; then
-              if grep -Fq 'styles.css?v=3' <<<"$BODY"; then
+              if grep -Fq 'styles.css?v=4' <<<"$BODY"; then
                 echo "Live langtailor site OK at $URL (attempt $i)."
                 exit 0
               fi
