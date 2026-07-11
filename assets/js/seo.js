@@ -31,6 +31,20 @@
     url: GITHUB_ORG,
     logo: { "@type": "ImageObject", url: LOGO },
     email: EMAIL,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        email: EMAIL,
+        contactType: "sales",
+        description: "Business inquiries and partnerships"
+      },
+      {
+        "@type": "ContactPoint",
+        email: EMAIL,
+        contactType: "customer support",
+        description: "Training, workshops, and team enablement"
+      }
+    ],
     sameAs: [GITHUB_ORG, LANGTAILOR_URL, SDK_URL, MARKETPLACE_URL]
   };
 

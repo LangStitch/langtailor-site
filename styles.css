@@ -141,6 +141,42 @@ h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacin
   gap: 16px;
 }
 
+.section-head--center {
+  text-align: center;
+  align-items: center;
+}
+
+.section-head--center .section-head__lede {
+  max-width: 520px;
+}
+
+.contact-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 22px 24px;
+  text-align: center;
+}
+
+.contact-email {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--signal);
+}
+
+.contact-email:hover {
+  color: var(--text);
+}
+
+.contact-note {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--text-3);
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
 /* ── Nav ───────────────────────────────────────────── */
 
 .nav {
