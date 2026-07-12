@@ -13,10 +13,9 @@
   var DOCS_URL = SITE_ORIGIN + "/docs/";
   var MARKETPLACE_URL = "https://marketplace.langstitch.com/";
   var MANIFEST_URL = "/assets/data/releases.json";
-  var OG_IMAGE =
-    (location.hostname === "langtailor.langstitch.com"
-      ? "https://langtailor.langstitch.com"
-      : SITE_ORIGIN) + "/assets/og-card.png";
+  var OPEN_VSX_URL = "https://open-vsx.org/extension/langstitch/langtailor-canvas";
+  var PYPI_URL = "https://pypi.org/project/langstitch-sdk/";
+  var OG_IMAGE = "https://langstitch.com/assets/og-card.svg";
   var LOGO =
     (location.hostname === "langtailor.langstitch.com"
       ? "https://langtailor.langstitch.com"
@@ -48,21 +47,21 @@
         description: "Training, workshops, and team enablement"
       }
     ],
-    sameAs: [GITHUB_ORG, LANGTAILOR_URL, SDK_URL, MARKETPLACE_URL]
+    sameAs: [GITHUB_ORG, LANGTAILOR_URL, SDK_URL, MARKETPLACE_URL, OPEN_VSX_URL, PYPI_URL, RELEASES_URL]
   };
 
   function buildPages() {
     return {
       home: {
-        title: "LangTailor · Visual Agent IDE — Canvas to Python, Java, Go & Rust",
+        title: "LangTailor · Visual Agent IDE — IR v2 Canvas to Python, Java, Go & Rust",
         description:
-          "Design AI agents on a visual canvas. Export production code in Python today; Spring AI, Go, and Rust expanding. Free LangTailor desktop IDE + VS Code extension. MIT licensed.",
+          "Design AI agents on a visual LangGraph canvas with IR v2. Compile and export production Python via langstitch-sdk today; Spring AI, Go, and Rust expanding. Free LangTailor desktop IDE + VS Code extension on Open VSX. MIT licensed.",
         keywords:
-          "LangTailor, LangStitch, visual agent IDE, LangGraph canvas, AI agent builder, multi-language export, Spring AI, Go agents, Rust agents, Python export, RAG pipeline, VS Code extension, Open VSX, free IDE, MIT",
+          "LangTailor, LangStitch, visual agent IDE, LangGraph canvas, IR v2, langstitch compile, AI agent builder, multi-language export, Spring AI, Go agents, Rust agents, Python LangGraph export, RAG pipeline, VS Code extension, Open VSX, free IDE, MIT, RunEvents",
         canonical: SITE_ORIGIN + "/",
         ogTitle: "LangTailor — Design Agents Visually, Ship to Production",
         ogDescription:
-          "The visual agent IDE for teams who want canvas design and real production export — Python today, Java · Go · Rust expanding. Download free.",
+          "Visual agent IDE with IR v2 canvas — design workflows, compile with langstitch-sdk, export Python today. Java · Go · Rust expanding. Download free for Windows & macOS.",
         twitterTitle: "LangTailor · Visual Agent IDE",
         imageAlt: "LangTailor visual agent IDE — design on canvas, export Python Java Go Rust",
         jsonLd: function () {
@@ -75,7 +74,7 @@
               alternateName: PRODUCT_NAME,
               url: SITE_ORIGIN + "/",
               description:
-                "Visual agent IDE — design workflows on a canvas and export production code in multiple languages.",
+                "Visual agent IDE — design LangGraph workflows on an IR v2 canvas and export production code via langstitch-sdk. Python ships on PyPI; Spring AI, Go, and Rust expanding.",
               inLanguage: "en-US",
               publisher: { "@id": SITE_ORIGIN + "/#organization" },
               potentialAction: {
@@ -96,7 +95,7 @@
               operatingSystem: OS_LIST,
               softwareVersion: VERSION,
               description:
-                "Visual agent IDE with canvas design, asset designers, RAG pipelines, and multi-language production export. Python ships today; Spring AI, Go, and Rust expanding.",
+                "Visual agent IDE with IR v2 canvas, asset designers, RAG pipelines, SDK compile integration, and multi-language production export. Python ships today; Spring AI, Go, and Rust expanding.",
               url: LANGTAILOR_URL,
               downloadUrl: DOWNLOAD_URL,
               installUrl: LANGTAILOR_URL,
@@ -109,11 +108,13 @@
               author: { "@id": SITE_ORIGIN + "/#organization" },
               license: "https://opensource.org/licenses/MIT",
               featureList: [
-                "Visual LangGraph canvas",
+                "Visual LangGraph canvas (IR v2)",
+                "langstitch-sdk compile integration",
                 "Multi-language export",
                 "RAG pipeline designer",
                 "Docker and Helm deploy",
-                "VS Code extension"
+                "VS Code extension (Open VSX)",
+                "Dev RunEvents overlay"
               ]
             },
             {
@@ -146,6 +147,24 @@
                     text:
                       "Yes. LangTailor and the LangStitch VS Code extension are MIT licensed. Download, export, and keep your projects with no account required."
                   }
+                },
+                {
+                  "@type": "Question",
+                  name: "What is IR v2 in LangTailor?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text:
+                      "IR v2 is the LangStitch document format for agent graphs. LangTailor saves and loads .langstitch.json canvas files, integrates with the langstitch-sdk compiler (langstitch compile), and exports Python LangGraph projects with the same structure."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  name: "How do I install the LangTailor VS Code extension?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text:
+                      "Install LangTailor Canvas from Open VSX (langstitch/langtailor-canvas) or download the VSIX from langtailor.langstitch.com. The extension opens IR v2 canvas files and works standalone or inside the LangTailor desktop IDE."
+                  }
                 }
               ]
             }
@@ -157,13 +176,13 @@
         description:
           "Download LangTailor v" +
           VERSION +
-          " — the LangStitch desktop agent IDE. Visual canvas, multi-language export, terminal, git, Docker/Helm deploy. Free MIT license.",
+          " — the LangStitch desktop agent IDE with IR v2 canvas. Visual LangGraph design, langstitch-sdk compile, multi-language export, terminal, git, Docker/Helm deploy. Free MIT license.",
         keywords:
-          "download LangTailor, LangStitch IDE, agent IDE download, Windows installer, macOS DMG, visual LangGraph IDE, free developer tools",
+          "download LangTailor, LangStitch IDE, agent IDE download, Windows installer, macOS DMG, visual LangGraph IDE, IR v2, Open VSX, VSX extension, free developer tools",
         canonical: LANGTAILOR_URL,
         ogTitle: "Download LangTailor — Free Visual Agent IDE",
         ogDescription:
-          "Windows & macOS · Canvas + code · Python ships today; Spring AI, Go, Rust expanding · MIT licensed",
+          "Windows & macOS · IR v2 canvas + code · Python via langstitch-sdk; Spring AI, Go, Rust expanding · MIT licensed",
         twitterTitle: "Download LangTailor · Free Agent IDE",
         imageAlt: "Download LangTailor desktop IDE for Windows and macOS",
         sitemap: LANGTAILOR_URL + "sitemap.xml",
@@ -186,11 +205,11 @@
         }
       },
       sdk: {
-        title: "langstitch-sdk · Python SDK for LangGraph Agents · pip install",
+        title: "langstitch-sdk · Python SDK & IR v2 Compiler · pip install langstitch-sdk",
         description:
-          "Build LangGraph agents in Python with decorators, typed YAML config, and a CLI. pip install langstitch-sdk — same structure LangTailor exports from the canvas.",
+          "Build LangGraph agents in Python with decorators, typed YAML config, IR v2 compiler, dev RunEvents, and langstitch compile CLI. pip install langstitch-sdk — same structure LangTailor exports from the canvas.",
         keywords:
-          "langstitch-sdk, LangGraph Python SDK, pip install langstitch-sdk, agent SDK, LangGraph decorators, Python agent framework",
+          "langstitch-sdk, LangGraph Python SDK, pip install langstitch-sdk, IR v2 compiler, langstitch compile, RunEvents, agent SDK, LangGraph decorators, Python agent framework, PyPI",
         canonical: SDK_URL,
         ogTitle: "LangStitch SDK — Python SDK for LangGraph",
         ogDescription: "pip install langstitch-sdk · Decorators · typed config · CLI scaffold · MIT",
@@ -365,7 +384,7 @@
     upsertMeta("og:image:alt", imageAlt, true);
     upsertMeta("og:image:width", "1200", true);
     upsertMeta("og:image:height", "630", true);
-    upsertMeta("og:image:type", "image/png", true);
+    upsertMeta("og:image:type", "image/svg+xml", true);
     upsertMeta("og:locale", "en_US", true);
 
     upsertMeta("twitter:card", "summary_large_image");
