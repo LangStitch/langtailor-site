@@ -1,0 +1,51 @@
+name: Cleanup artifacts
+
+on:
+  schedule:
+    - cron: '0 4 * * 0'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const keepNewestPages = 1
+            let deleted = 0
+            const all = []
+
+            for (let page = 1; ; page++) {
+              const { data } = await github.rest.actions.listArtifactsForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                per_page: 100,
+                page,
+              })
+              all.push(...data.artifacts)
+              if (data.artifacts.length < 100) break
+            }
+
+            const newestPageIds = new Set(
+              all
+                .filter((a) => a.name === 'github-pages' && !a.expired)
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                .slice(0, keepNewestPages)
+                .map((a) => a.id),
+            )
+
+            for (const artifact of all) {
+              if (newestPageIds.has(artifact.id)) continue
+              await github.rest.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: artifact.id,
+              })
+              deleted++
+            }
+
+            core.info(`Deleted ${deleted} artifact(s); kept ${newestPageIds.size} github-pages artifact(s)`)
