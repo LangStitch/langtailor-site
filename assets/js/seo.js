@@ -15,13 +15,15 @@
   var MANIFEST_URL = "/assets/data/releases.json";
   var OPEN_VSX_URL = "https://open-vsx.org/extension/langstitch/langtailor-canvas";
   var PYPI_URL = "https://pypi.org/project/langstitch-sdk/";
+  var MAVEN_SPRING_AI_URL = "https://central.sonatype.com/artifact/com.langstitch/langstitch-spring-ai/0.1.0";
+  var GITHUB_SPRING_AI = "https://github.com/LangStitch/langstitch-spring-ai";
   var OG_IMAGE = "https://langstitch.com/assets/og-card.svg";
   var LOGO =
     (location.hostname === "langtailor.langstitch.com"
       ? "https://langtailor.langstitch.com"
       : SITE_ORIGIN) + "/assets/brand-logo.svg";
 
-  var VERSION = "0.3.0";
+  var VERSION = "0.3.1";
   var OS_LIST = "Windows, macOS";
   var DOWNLOAD_URL =
     "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.0/LangTailor-0.3.0-win-x64-setup.exe";
@@ -47,7 +49,7 @@
         description: "Training, workshops, and team enablement"
       }
     ],
-    sameAs: [GITHUB_ORG, LANGTAILOR_URL, SDK_URL, MARKETPLACE_URL, OPEN_VSX_URL, PYPI_URL, RELEASES_URL]
+    sameAs: [GITHUB_ORG, LANGTAILOR_URL, SDK_URL, MARKETPLACE_URL, OPEN_VSX_URL, PYPI_URL, MAVEN_SPRING_AI_URL, GITHUB_SPRING_AI, RELEASES_URL]
   };
 
   function buildPages() {
@@ -55,13 +57,13 @@
       home: {
         title: "LangTailor · Visual Agent IDE — IR v2 Canvas to Python, Java, Go & Rust",
         description:
-          "Design AI agents on a visual LangGraph canvas with IR v2. Compile and export production Python via langstitch-sdk today; Spring AI, Go, and Rust expanding. Free LangTailor desktop IDE + VS Code extension on Open VSX. MIT licensed.",
+          "Design AI agents on a visual LangGraph canvas with IR v2. Python on PyPI and Spring AI on Maven Central today; Go and Rust expanding. Free LangTailor desktop IDE + VS Code extension on Open VSX. MIT licensed.",
         keywords:
           "LangTailor, LangStitch, visual agent IDE, LangGraph canvas, IR v2, langstitch compile, AI agent builder, multi-language export, Spring AI, Go agents, Rust agents, Python LangGraph export, RAG pipeline, VS Code extension, Open VSX, free IDE, MIT, RunEvents",
         canonical: SITE_ORIGIN + "/",
         ogTitle: "LangTailor — Design Agents Visually, Ship to Production",
         ogDescription:
-          "Visual agent IDE with IR v2 canvas — design workflows, compile with langstitch-sdk, export Python today. Java · Go · Rust expanding. Download free for Windows & macOS.",
+          "Visual agent IDE with IR v2 canvas — design workflows, compile with langstitch-sdk, export Python and Spring AI today. Go and Rust expanding. Download free for Windows & macOS.",
         twitterTitle: "LangTailor · Visual Agent IDE",
         imageAlt: "LangTailor visual agent IDE — design on canvas, export Python Java Go Rust",
         jsonLd: function () {
@@ -74,7 +76,7 @@
               alternateName: PRODUCT_NAME,
               url: SITE_ORIGIN + "/",
               description:
-                "Visual agent IDE — design LangGraph workflows on an IR v2 canvas and export production code via langstitch-sdk. Python ships on PyPI; Spring AI, Go, and Rust expanding.",
+                "Visual agent IDE — design LangGraph workflows on an IR v2 canvas and export production code via langstitch-sdk. Python on PyPI and Spring AI on Maven Central; Go and Rust expanding.",
               inLanguage: "en-US",
               publisher: { "@id": SITE_ORIGIN + "/#organization" },
               potentialAction: {
@@ -95,7 +97,7 @@
               operatingSystem: OS_LIST,
               softwareVersion: VERSION,
               description:
-                "Visual agent IDE with IR v2 canvas, asset designers, RAG pipelines, SDK compile integration, and multi-language production export. Python ships today; Spring AI, Go, and Rust expanding.",
+                "Visual agent IDE with IR v2 canvas, asset designers, RAG pipelines, SDK compile integration, and multi-language production export. Python on PyPI and Spring AI on Maven Central; Go and Rust expanding.",
               url: LANGTAILOR_URL,
               downloadUrl: DOWNLOAD_URL,
               installUrl: LANGTAILOR_URL,
@@ -136,7 +138,7 @@
                   acceptedAnswer: {
                     "@type": "Answer",
                     text:
-                      "Python (LangGraph) export ships today. Spring AI (Java), Go, and Rust exporters are expanding — same canvas, same project format."
+                      "Python on PyPI and Spring AI on Maven Central (com.langstitch:langstitch-spring-ai:0.1.0) export ships today from LangTailor. Go and Rust exporters are expanding — same canvas, same project format."
                   }
                 },
                 {
@@ -182,7 +184,7 @@
         canonical: LANGTAILOR_URL,
         ogTitle: "Download LangTailor — Free Visual Agent IDE",
         ogDescription:
-          "Windows & macOS · IR v2 canvas + code · Python via langstitch-sdk; Spring AI, Go, Rust expanding · MIT licensed",
+          "Windows & macOS · IR v2 canvas + code · Python on PyPI and Spring AI on Maven Central; Go and Rust expanding · MIT licensed",
         twitterTitle: "Download LangTailor · Free Agent IDE",
         imageAlt: "Download LangTailor desktop IDE for Windows and macOS",
         sitemap: LANGTAILOR_URL + "sitemap.xml",
