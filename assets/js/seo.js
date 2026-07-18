@@ -26,7 +26,7 @@
   var VERSION = "0.3.1";
   var OS_LIST = "Windows, macOS";
   var DOWNLOAD_URL =
-    "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.0/LangTailor-0.3.0-win-x64-setup.exe";
+    "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-win-x64-setup.exe";
 
   var ORG = {
     "@type": "Organization",

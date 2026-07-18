@@ -1,19 +1,19 @@
 {
   "langtailor": {
-    "version": "0.3.0",
-    "tag": "langtailor-v0.3.0",
-    "published": "2026-07-12",
+    "version": "0.3.1",
+    "tag": "langtailor-v0.3.1",
+    "published": "2026-07-19",
     "repo": "LangStitch/langtailor-releases",
-    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.3.0",
+    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.3.1",
     "operatingSystem": "Windows, macOS"
   },
   "vsx": {
-    "version": "0.3.0",
+    "version": "0.3.1",
     "extensionId": "langstitch.langtailor-canvas",
     "openVsxUrl": "https://open-vsx.org/extension/langstitch/langtailor-canvas",
     "installCommand": "codium --install-extension langstitch.langtailor-canvas",
-    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.0/langtailor-canvas-0.3.0.vsix",
-    "tag": "langtailor-v0.3.0"
+    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/langtailor-canvas-0.3.1.vsix",
+    "tag": "langtailor-v0.3.1"
   },
   "downloadApiBase": "https://api.langstitch.com/api/download",
   "downloads": [
@@ -21,47 +21,61 @@
       "id": "win-installer",
       "product": "langtailor",
       "label": "Windows x64 installer",
-      "meta": "LangTailor-0.3.0-win-x64-setup.exe",
+      "meta": "LangTailor-0.3.1-win-x64-setup.exe",
       "platform": "windows",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "featured": true,
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.0/LangTailor-0.3.0-win-x64-setup.exe"
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-win-x64-setup.exe"
     },
     {
       "id": "macos-arm64-dmg",
       "product": "langtailor",
       "label": "macOS arm64",
-      "meta": "LangTailor-0.3.0-darwin-arm64.dmg · Apple Silicon",
+      "meta": "LangTailor-0.3.1-darwin-arm64.dmg · Apple Silicon",
       "platform": "macos",
-      "version": "0.3.0",
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.0/LangTailor-0.3.0-darwin-arm64.dmg"
+      "version": "0.3.1",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-darwin-arm64.dmg"
     },
     {
       "id": "macos-x64-dmg",
       "product": "langtailor",
       "label": "macOS x64",
-      "meta": "LangTailor-0.3.0-darwin-x64.dmg · Intel",
+      "meta": "LangTailor-0.3.1-darwin-x64.dmg · Intel",
       "platform": "macos",
-      "version": "0.3.0",
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.0/LangTailor-0.3.0-darwin-x64.dmg"
+      "version": "0.3.1",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-darwin-x64.dmg"
     },
     {
       "id": "vsx",
       "product": "vsx",
       "label": "VSX extension",
-      "meta": "langtailor-canvas-0.3.0.vsix",
+      "meta": "langtailor-canvas-0.3.1.vsix",
       "platform": "extension",
-      "version": "0.3.0",
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.0/langtailor-canvas-0.3.0.vsix"
+      "version": "0.3.1",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/langtailor-canvas-0.3.1.vsix"
     }
   ],
   "releaseHistory": [
+    {
+      "tag": "langtailor-v0.3.1",
+      "version": "0.3.1",
+      "published": "2026-07-19",
+      "summary": "Spring AI IR compile via langstitch-spring-ai (Maven Central 0.1.0), canvas Spring AI export fallback, platform drawer Spring AI (Java).",
+      "latest": true,
+      "repo": "langtailor-releases",
+      "assets": {
+        "win-installer": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-win-x64-setup.exe",
+        "macos-arm64-dmg": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-darwin-arm64.dmg",
+        "macos-x64-dmg": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-darwin-x64.dmg",
+        "vsx": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/langtailor-canvas-0.3.1.vsix"
+      }
+    },
     {
       "tag": "langtailor-v0.3.0",
       "version": "0.3.0",
       "published": "2026-07-12",
       "summary": "IR v2 documents, SDK compile integration (langstitch-sdk 0.3.0), dev run events, compile target persistence.",
-      "latest": true,
+      "latest": false,
       "repo": "langtailor-releases",
       "assets": {
         "win-installer": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.0/LangTailor-0.3.0-win-x64-setup.exe",
