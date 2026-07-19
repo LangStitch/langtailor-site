@@ -1,19 +1,19 @@
 {
   "langtailor": {
-    "version": "0.3.1",
-    "tag": "langtailor-v0.3.1",
+    "version": "0.3.2",
+    "tag": "langtailor-v0.3.2",
     "published": "2026-07-19",
     "repo": "LangStitch/langtailor-releases",
-    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.3.1",
+    "notesUrl": "https://github.com/LangStitch/langtailor-releases/releases/tag/langtailor-v0.3.2",
     "operatingSystem": "Windows, macOS"
   },
   "vsx": {
-    "version": "0.3.1",
+    "version": "0.3.2",
     "extensionId": "langstitch.langtailor-canvas",
     "openVsxUrl": "https://open-vsx.org/extension/langstitch/langtailor-canvas",
     "installCommand": "codium --install-extension langstitch.langtailor-canvas",
-    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/langtailor-canvas-0.3.1.vsix",
-    "tag": "langtailor-v0.3.1"
+    "vsixUrl": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/langtailor-canvas-0.3.2.vsix",
+    "tag": "langtailor-v0.3.2"
   },
   "downloadApiBase": "https://api.langstitch.com/api/download",
   "downloads": [
@@ -21,47 +21,61 @@
       "id": "win-installer",
       "product": "langtailor",
       "label": "Windows x64 installer",
-      "meta": "LangTailor-0.3.1-win-x64-setup.exe",
+      "meta": "LangTailor-0.3.2-win-x64-setup.exe",
       "platform": "windows",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "featured": true,
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-win-x64-setup.exe"
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/LangTailor-0.3.2-win-x64-setup.exe"
     },
     {
       "id": "macos-arm64-dmg",
       "product": "langtailor",
       "label": "macOS arm64",
-      "meta": "LangTailor-0.3.1-darwin-arm64.dmg · Apple Silicon",
+      "meta": "LangTailor-0.3.2-darwin-arm64.dmg \u00b7 Apple Silicon",
       "platform": "macos",
-      "version": "0.3.1",
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-darwin-arm64.dmg"
+      "version": "0.3.2",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/LangTailor-0.3.2-darwin-arm64.dmg"
     },
     {
       "id": "macos-x64-dmg",
       "product": "langtailor",
       "label": "macOS x64",
-      "meta": "LangTailor-0.3.1-darwin-x64.dmg · Intel",
+      "meta": "LangTailor-0.3.2-darwin-x64.dmg \u00b7 Intel",
       "platform": "macos",
-      "version": "0.3.1",
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-darwin-x64.dmg"
+      "version": "0.3.2",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/LangTailor-0.3.2-darwin-x64.dmg"
     },
     {
       "id": "vsx",
       "product": "vsx",
       "label": "VSX extension",
-      "meta": "langtailor-canvas-0.3.1.vsix",
+      "meta": "langtailor-canvas-0.3.2.vsix",
       "platform": "extension",
-      "version": "0.3.1",
-      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/langtailor-canvas-0.3.1.vsix"
+      "version": "0.3.2",
+      "url": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/langtailor-canvas-0.3.2.vsix"
     }
   ],
   "releaseHistory": [
+    {
+      "tag": "langtailor-v0.3.2",
+      "version": "0.3.2",
+      "published": "2026-07-19",
+      "summary": "Language-agnostic marketplace compile for Spring AI (MCP tools, connector spring-ai templates); pairs with langstitch-spring-ai 0.2.0.",
+      "latest": true,
+      "repo": "langtailor-releases",
+      "assets": {
+        "win-installer": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/LangTailor-0.3.2-win-x64-setup.exe",
+        "macos-arm64-dmg": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/LangTailor-0.3.2-darwin-arm64.dmg",
+        "macos-x64-dmg": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/LangTailor-0.3.2-darwin-x64.dmg",
+        "vsx": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/langtailor-canvas-0.3.2.vsix"
+      }
+    },
     {
       "tag": "langtailor-v0.3.1",
       "version": "0.3.1",
       "published": "2026-07-19",
       "summary": "Spring AI IR compile via langstitch-spring-ai (Maven Central 0.1.0), canvas Spring AI export fallback, platform drawer Spring AI (Java).",
-      "latest": true,
+      "latest": false,
       "repo": "langtailor-releases",
       "assets": {
         "win-installer": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-win-x64-setup.exe",
@@ -109,7 +123,8 @@
         "macos-arm64-dmg": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.8/LangTailor-0.2.8-darwin-arm64.dmg",
         "macos-x64-dmg": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.8/LangTailor-0.2.8-darwin-x64.dmg",
         "vsx": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.8/langtailor-canvas-0.2.8.vsix"
-      }
+      },
+      "latest": false
     },
     {
       "tag": "langtailor-v0.2.6",
@@ -132,7 +147,8 @@
       "assets": {
         "win-installer": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.5/LangTailor-0.2.5-win-x64-setup.exe",
         "vsx": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.5/langtailor-canvas-0.2.7.vsix"
-      }
+      },
+      "latest": false
     },
     {
       "tag": "langtailor-v0.2.4",
@@ -142,7 +158,8 @@
       "repo": "langtailor-releases",
       "assets": {
         "win-installer": "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.2.4/LangTailor-0.2.4-win-x64-setup.exe"
-      }
+      },
+      "latest": false
     }
   ]
 }

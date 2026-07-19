@@ -23,10 +23,10 @@
       ? "https://langtailor.langstitch.com"
       : SITE_ORIGIN) + "/assets/brand-logo.svg";
 
-  var VERSION = "0.3.1";
+  var VERSION = "0.3.2";
   var OS_LIST = "Windows, macOS";
   var DOWNLOAD_URL =
-    "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.1/LangTailor-0.3.1-win-x64-setup.exe";
+    "https://github.com/LangStitch/langtailor-releases/releases/download/langtailor-v0.3.2/LangTailor-0.3.2-win-x64-setup.exe";
 
   var ORG = {
     "@type": "Organization",
