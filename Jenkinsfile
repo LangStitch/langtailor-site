@@ -1,4 +1,8 @@
 pipeline {
+  options {
+    disableConcurrentBuilds()
+    lock('langstitch-global')
+  }
   agent {
     kubernetes {
       yaml '''
