@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.min.css" />
   <script src="assets/js/seo.js" defer></script>
   <script src="assets/js/releases.js" defer></script>
+  <script src="assets/js/marketplace-stats.js" defer></script>
   <script src="assets/js/features.js" defer></script>
   <link rel="stylesheet" href="styles.css?v=5" />
   <link rel="stylesheet" href="assets/css/analytics.css" />
@@ -281,34 +282,34 @@
     </div>
   </section>
 
-  <section id="marketplace" class="section">
+  <section id="marketplace" class="section" data-mk-live aria-busy="true">
     <div class="wrap wrap--wide">
       <div class="section-head section-head--row">
         <div>
           <span class="label">Marketplace</span>
-          <h2>77 catalog items ready to sync</h2>
-          <p class="lead">GitHub sign-in · sync into canvas · publish / review at marketplace.langstitch.com</p>
+          <h2 data-mk-heading>82 catalog items ready to sync</h2>
+          <p class="lead">Live catalog from api.langstitch.com · GitHub sign-in · sync into canvas · publish / review at marketplace.langstitch.com</p>
         </div>
         <a class="btn btn-outline btn-sm" href="https://marketplace.langstitch.com">Open marketplace →</a>
       </div>
       <div class="market-strip">
-        <a class="market-strip__lane" href="https://marketplace.langstitch.com">
-          <strong>20</strong><span>connectors</span>
+        <a class="market-strip__lane" data-mk-lane-row="connectors" href="https://marketplace.langstitch.com">
+          <strong data-mk-lane="connectors">20</strong><span>connectors</span>
         </a>
-        <a class="market-strip__lane" href="https://marketplace.langstitch.com">
-          <strong>6</strong><span>agents</span>
+        <a class="market-strip__lane" data-mk-lane-row="agents" href="https://marketplace.langstitch.com">
+          <strong data-mk-lane="agents">8</strong><span>agents</span>
         </a>
-        <a class="market-strip__lane" href="https://marketplace.langstitch.com">
-          <strong>28</strong><span>graphs</span>
+        <a class="market-strip__lane" data-mk-lane-row="graphs" href="https://marketplace.langstitch.com">
+          <strong data-mk-lane="graphs">28</strong><span>graphs</span>
         </a>
-        <a class="market-strip__lane" href="https://marketplace.langstitch.com">
-          <strong>12</strong><span>MCP packs</span>
+        <a class="market-strip__lane" data-mk-lane-row="mcps" href="https://marketplace.langstitch.com">
+          <strong data-mk-lane="mcps">16</strong><span>MCP packs</span>
         </a>
-        <a class="market-strip__lane" href="https://marketplace.langstitch.com">
-          <strong>10</strong><span>utility plugins</span>
+        <a class="market-strip__lane" data-mk-lane-row="plugins" href="https://marketplace.langstitch.com">
+          <strong data-mk-lane="plugins">10</strong><span>plugins</span>
         </a>
-        <a class="market-strip__lane" href="https://marketplace.langstitch.com">
-          <strong>1</strong><span>canvas extension</span>
+        <a class="market-strip__lane" data-mk-lane-row="skills" href="https://marketplace.langstitch.com" hidden>
+          <strong data-mk-lane="skills">0</strong><span>skills</span>
         </a>
       </div>
     </div>
@@ -523,7 +524,7 @@
           <div class="feat-card__body">
             <span class="feat-card__num">07</span>
             <h3>Marketplace</h3>
-            <p>77 items — 20 connectors · 6 agents · 28 graphs · 12 MCP packs · 10 utility plugins · 1 canvas extension. Sign in once; sync into the IDE.</p>
+            <p><span data-mk-summary>82 items — 20 connectors · 8 agents · 28 graphs · 16 MCP packs · 10 plugins</span>. Sign in once; sync into the IDE.</p>
           </div>
         </article>
 
