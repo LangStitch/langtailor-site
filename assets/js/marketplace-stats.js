@@ -4,26 +4,44 @@
  */
 (function () {
   var API_URL = "https://api.langstitch.com/api/marketplace/plugins";
-  var LANES = ["connectors", "agents", "mcps", "graphs", "skills", "plugins"];
+  var LANES = ["connectors", "agents", "mcps", "graphs", "skills", "personas", "prompts", "plugins"];
   var LABELS = {
     connectors: "connectors",
     agents: "agents",
     mcps: "MCP packs",
     graphs: "graphs",
     skills: "skills",
+    personas: "personas",
+    prompts: "prompts",
     plugins: "plugins"
   };
 
+  var KIND_TO_LANE = {
+    connector: "connectors",
+    agent: "agents",
+    mcp: "mcps",
+    graph: "graphs",
+    skill: "skills",
+    persona: "personas",
+    prompt: "prompts",
+    plugin: "plugins"
+  };
+
   function inferLane(plugin) {
-    if (plugin && plugin.kind === "connector") return "connectors";
+    if (plugin && plugin.kind && KIND_TO_LANE[plugin.kind]) {
+      return KIND_TO_LANE[plugin.kind];
+    }
     var haystack = [plugin.category, plugin.slug, plugin.name, plugin.summary]
       .filter(Boolean)
       .join(" ")
       .toLowerCase();
+    if (/\bconnector/.test(haystack)) return "connectors";
     if (/\bagent/.test(haystack)) return "agents";
     if (/\bmcp/.test(haystack)) return "mcps";
     if (/\b(graph|visual|canvas|langgraph)/.test(haystack)) return "graphs";
     if (/\bskill/.test(haystack)) return "skills";
+    if (/\bpersona/.test(haystack)) return "personas";
+    if (/\bprompt/.test(haystack)) return "prompts";
     return "plugins";
   }
 

@@ -68,6 +68,9 @@
           The production agent IDE — drag-and-drop canvas, asset designers, RAG pipelines,
           and multi-language project generation.
           <strong>Python on PyPI and Spring AI on Maven Central ship today</strong>; Go and Rust targets are expanding.
+          LangTailor supports two project types: <strong>Agentic Development</strong> (graphs, skills, deploy) and <strong>Plugin Creator</strong> (multi-platform packs).
+          Use <code>langstitch plugin new</code> and <code>langstitch pack</code> to build <code>.langstitch-pack.zip</code> artifacts (validation is fail-closed unless you pass <code>--allow-partial</code>).
+          Browse personas, prompts, and packs in the marketplace.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" data-langtailor-download href="#download">Download LangTailor (Windows &amp; macOS)</a>
@@ -305,11 +308,17 @@
         <a class="market-strip__lane" data-mk-lane-row="mcps" href="https://marketplace.langstitch.com">
           <strong data-mk-lane="mcps">16</strong><span>MCP packs</span>
         </a>
-        <a class="market-strip__lane" data-mk-lane-row="plugins" href="https://marketplace.langstitch.com">
-          <strong data-mk-lane="plugins">10</strong><span>plugins</span>
-        </a>
         <a class="market-strip__lane" data-mk-lane-row="skills" href="https://marketplace.langstitch.com" hidden>
           <strong data-mk-lane="skills">0</strong><span>skills</span>
+        </a>
+        <a class="market-strip__lane" data-mk-lane-row="personas" href="https://marketplace.langstitch.com" hidden>
+          <strong data-mk-lane="personas">0</strong><span>personas</span>
+        </a>
+        <a class="market-strip__lane" data-mk-lane-row="prompts" href="https://marketplace.langstitch.com" hidden>
+          <strong data-mk-lane="prompts">0</strong><span>prompts</span>
+        </a>
+        <a class="market-strip__lane" data-mk-lane-row="plugins" href="https://marketplace.langstitch.com">
+          <strong data-mk-lane="plugins">10</strong><span>plugins</span>
         </a>
       </div>
     </div>
@@ -337,7 +346,7 @@
             <li>Canvas toolbar with Build / Export and marketplace actions</li>
             <li>Offline export — production Python projects without a cloud account</li>
             <li>Asset designers — skills, guardrails, personas, RAG pipelines</li>
-            <li>Production export — Python on PyPI and Spring AI on Maven Central; Go and Rust expanding</li>
+            <li>Production export — Python from the IDE today; Spring AI via the <code>langstitch-spring-ai</code> CLI on Maven Central. Go and Rust expanding.</li>
             <li>One-click install from Open VSX — stays in your editor flow</li>
           </ul>
           <div class="tier-foot">
@@ -361,7 +370,7 @@
             <li>Local Build / Run / Test / Debug / Deploy from one panel</li>
             <li>Platform panel — Docker build, Helm deploy, eval runs</li>
             <li>Marketplace sign-in and plugin sync built in</li>
-            <li>One-click export — Python on PyPI and Spring AI on Maven Central; Go and Rust expanding</li>
+            <li>Export from canvas — Python projects in one step; Spring AI needs the Java CLI (<code>langstitch-spring-ai compile</code>). Go and Rust expanding.</li>
           </ul>
           <div class="tier-foot">
             <a class="btn btn-primary btn-block" data-langtailor-download href="/dl.html?asset=win-installer">Download LangTailor (Windows &amp; macOS) <span data-langtailor-version>v0.3.1</span></a>

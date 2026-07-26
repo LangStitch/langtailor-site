@@ -15,7 +15,7 @@
   var MANIFEST_URL = "/assets/data/releases.json";
   var OPEN_VSX_URL = "https://open-vsx.org/extension/langstitch/langtailor-canvas";
   var PYPI_URL = "https://pypi.org/project/langstitch-sdk/";
-  var MAVEN_SPRING_AI_URL = "https://central.sonatype.com/artifact/com.langstitch/langstitch-spring-ai/0.1.0";
+  var MAVEN_SPRING_AI_URL = "https://central.sonatype.com/artifact/com.langstitch/langstitch-spring-ai/0.2.0";
   var GITHUB_SPRING_AI = "https://github.com/LangStitch/langstitch-spring-ai";
   var OG_IMAGE = "https://langstitch.com/assets/og-card.svg";
   var LOGO =
@@ -138,7 +138,7 @@
                   acceptedAnswer: {
                     "@type": "Answer",
                     text:
-                      "Python on PyPI and Spring AI on Maven Central (com.langstitch:langstitch-spring-ai:0.1.0) export ships today from LangTailor. Go and Rust exporters are expanding — same canvas, same project format."
+                      "Python on PyPI and Spring AI on Maven Central (com.langstitch:langstitch-spring-ai:0.2.0) export ships today from LangTailor. Go and Rust exporters are expanding — same canvas, same project format."
                   }
                 },
                 {
