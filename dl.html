@@ -15,7 +15,7 @@
     <h1 style="margin:12px 0 8px;">Starting download…</h1>
     <p class="lead" style="margin:0 auto;" id="status">Resolving asset</p>
     <p class="dim" style="margin-top:16px; font-size:11px; font-family:var(--mono);">
-      <a href="https://langstitch.com/">← Home</a>
+      <a href="https://langtailor.langstitch.com/#download">All downloads</a>
       <span aria-hidden="true"> · </span>
       <a id="fallback" href="#" hidden>Click here if the download does not start</a>
     </p>
@@ -41,9 +41,7 @@
           status.textContent = asset.label + " · v" + asset.version;
           fallback.href = asset.url;
           fallback.hidden = false;
-          var track = (manifest.downloadApiBase || "https://api.langstitch.com/api/download")
-            .replace(/\/$/, "") + "/" + encodeURIComponent(assetId);
-          window.location.replace(track);
+          window.location.replace(asset.url);
         })
         .catch(function (err) {
           status.textContent = err.message || "Could not resolve download.";

@@ -23,7 +23,8 @@
   }
 
   function downloadHref(assetId) {
-    return "/dl.html?asset=" + encodeURIComponent(assetId);
+    var asset = cache && cache.downloads.find(function (item) { return item.id === assetId; });
+    return asset ? asset.url : "/dl.html?asset=" + encodeURIComponent(assetId);
   }
 
   function trackUrl(assetId, apiBase) {
@@ -67,6 +68,8 @@
   }
 
   function manifestUnavailable(root) {
+    // Keep crawlable static downloads usable during a feed outage.
+    if (root.children.length) return;
     root.innerHTML =
       '<p class="dim">Release data is temporarily unavailable. Get downloads from ' +
       '<a href="https://github.com/LangStitch/langtailor-releases/releases" rel="noopener">GitHub releases</a>.</p>';
@@ -116,10 +119,12 @@
           '<a href="' +
           lt.notesUrl +
           '">Release notes</a>' +
+          (lt.checksumUrl ? '<a href="' + lt.checksumUrl + '">SHA256 checksums</a>' : '') +
           '<span class="dim dl-stats" data-dl-stats hidden></span>';
         refreshStats(root.querySelector("[data-dl-stats]"));
       })
       .catch(function () {
+        if (root.children.length) return;
         root.innerHTML =
           '<a href="https://github.com/LangStitch/langtailor-releases/releases" rel="noopener">Latest releases on GitHub</a>';
       });
@@ -182,6 +187,7 @@
             (rel.latest ? '<span class="tag tag--live">Latest</span>' : "v" + rel.version) +
             '</div><div class="dl-row__actions">' +
             actions +
+            (rel.checksumUrl ? '<a class="btn btn-ghost btn-sm" href="' + rel.checksumUrl + '">Checksums</a>' : '') +
             '<a class="btn btn-ghost btn-sm" href="' +
             notesHref +
             '">Notes</a></div>';

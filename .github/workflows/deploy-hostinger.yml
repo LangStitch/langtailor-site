@@ -29,6 +29,10 @@ jobs:
         if: steps.ftp.outputs.configured == 'true'
         uses: actions/checkout@v7
 
+      - name: Validate release content and SEO
+        if: steps.ftp.outputs.configured == 'true'
+        run: node scripts/validate-site.cjs
+
       - name: Deploy via FTPS
         if: steps.ftp.outputs.configured == 'true'
         id: ftps
@@ -46,6 +50,7 @@ jobs:
             **/.git*/**
             **/.github/**
             README.md
+            scripts/**
 
       - name: Verify live site
         if: steps.ftp.outputs.configured == 'true' && steps.ftps.outcome == 'success'
@@ -55,7 +60,7 @@ jobs:
           for i in 1 2 3 4 5 6; do
             BODY="$(curl -fsSL --compressed -H "Cache-Control: no-cache" "$URL" 2>/dev/null || true)"
             if grep -Fq 'nav-logo__title' <<<"$BODY" && grep -Fq 'Download LangTailor' <<<"$BODY"; then
-              if grep -Fq 'styles.css?v=5' <<<"$BODY"; then
+              if grep -Fq 'LangTailor 0.4.0' <<<"$BODY" && grep -Fq 'Java and Go projects' <<<"$BODY"; then
                 echo "Live langtailor site OK at $URL (attempt $i)."
                 exit 0
               fi
